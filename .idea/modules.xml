@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Prefs.iml" filepath="$PROJECT_DIR$/Prefs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prefs/prefs.iml" filepath="$PROJECT_DIR$/prefs/prefs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prefs-coroutines/prefs-coroutines.iml" filepath="$PROJECT_DIR$/prefs-coroutines/prefs-coroutines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prefs-lifecycle/prefs-lifecycle.iml" filepath="$PROJECT_DIR$/prefs-lifecycle/prefs-lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prefs-moshi/prefs-moshi.iml" filepath="$PROJECT_DIR$/prefs-moshi/prefs-moshi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prefs-rx/prefs-rx.iml" filepath="$PROJECT_DIR$/prefs-rx/prefs-rx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+    </modules>
+  </component>
+</project>
