@@ -16,7 +16,6 @@
 
 package com.ivianuu.prefs.moshi
 
-import com.ivianuu.prefs.CustomPreference
 import com.ivianuu.prefs.Preference
 import com.ivianuu.prefs.Preferences
 import com.ivianuu.prefs.PreferencesPlugins
@@ -24,12 +23,18 @@ import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import kotlin.reflect.KClass
 
+/**
+ * Returns a [CustomPreference] of type [T] which will be deserialized/serialized by [moshi]
+ */
 inline fun <reified T : Any> Preferences.customMoshi(
     key: String,
     defaultValue: T,
     moshi: Moshi = PreferencesPlugins.defaultMoshi
 ) = customMoshi(key, defaultValue, T::class, moshi)
 
+/**
+ * Returns a [CustomPreference] of type [T] which will be deserialized/serialized by [moshi]
+ */
 fun <T : Any> Preferences.customMoshi(
     key: String,
     defaultValue: T,
@@ -41,5 +46,5 @@ private class MoshiConverter<T>(private val adapter: JsonAdapter<T>) : Preferenc
 
     override fun deserialize(serialized: String) = adapter.fromJson(serialized)!!
 
-    override fun serialize(value: T) = adapter.toJson(value)
+    override fun serialize(value: T): String = adapter.toJson(value)
 }

@@ -25,6 +25,9 @@ private var _defaultRemoveEvent = Lifecycle.Event.ON_DESTROY
         field = value
     }
 
+/**
+ * The default remove event when addListener with a lifecycle owner is used
+ */
 var PreferencesPlugins.defaultRemoveEvent: Lifecycle.Event
     get() = _defaultRemoveEvent
     set(value) { _defaultRemoveEvent = value }

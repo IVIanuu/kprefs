@@ -21,6 +21,9 @@ import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 
+/**
+ * Returns a [Observable] which emits on changes of [this]
+ */
 val <T> Preference<T>.observable: Observable<T>
     get() = Observable.create(PreferenceObservableOnSubscribe(this))
 

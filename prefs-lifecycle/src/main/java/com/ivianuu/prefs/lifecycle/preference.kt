@@ -24,7 +24,7 @@ import com.ivianuu.prefs.ChangeListener
 import com.ivianuu.prefs.Preference
 
 /**
- * Adds the [listener] and automatically removes him on [event]
+ * Adds the [listener] and automatically calls [Preference.removeListener] on [removeEvent]
  */
 fun <T> Preference<T>.addListener(
     owner: LifecycleOwner,

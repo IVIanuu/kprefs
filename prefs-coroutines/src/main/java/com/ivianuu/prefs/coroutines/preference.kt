@@ -16,19 +16,16 @@
 
 package com.ivianuu.prefs.coroutines
 
-import android.util.Log
 import com.ivianuu.prefs.Preference
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.ReceiveChannel
-import kotlinx.coroutines.channels.RendezvousChannel
-import kotlinx.coroutines.channels.produce
-import kotlinx.coroutines.isActive
 
-// todo improve this there must be a better way than using a conflated broadcast channel
+/**
+ * Returns a [ReceiveChannel] which emits on changes
+ */
 val <T> Preference<T>.receiveChannel: ReceiveChannel<T>
     get() {
+// todo improve this there must be a better way than using a conflated broadcast channel
         val channel = ConflatedBroadcastChannel<T>()
         val listener: (T) -> Unit = { channel.offer(it) }
         channel.invokeOnClose { removeListener(listener) }
