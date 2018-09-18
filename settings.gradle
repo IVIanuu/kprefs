@@ -1,1 +1,1 @@
-include ':sample', ':prefs', ':prefs-lifecycle', ':prefs-rx', ':prefs-coroutines', ':prefs-moshi'
+include ':sample', ':kprefs', ':kprefs-lifecycle', ':kprefs-rx', ':kprefs-coroutines', ':kprefs-moshi'
