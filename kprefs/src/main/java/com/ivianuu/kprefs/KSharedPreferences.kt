@@ -16,6 +16,7 @@
 
 package com.ivianuu.kprefs
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import kotlin.reflect.KClass
@@ -81,6 +82,7 @@ class KSharedPreferences private constructor(private val sharedPreferences: Shar
     fun <T> custom(key: String, defaultValue: T, converter: Preference.Converter<T>): CustomPreference<T> =
         RealPreference(listeners, sharedPreferences, ConverterAdapter(converter), key, defaultValue)
 
+    @SuppressLint("ApplySharedPref")
     fun clear() {
         sharedPreferences.edit().clear().apply {
             if (KPrefsPlugins.useCommit) {

@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package com.ivianuu.prefs.moshi
+package com.ivianuu.kprefs.lifecycle
 
-import com.ivianuu.prefs.PreferencesPlugins
-import com.squareup.moshi.Moshi
+import androidx.lifecycle.Lifecycle
+import com.ivianuu.kprefs.KPrefsPlugins
 
-private var _defaultMoshi = Moshi.Builder().build()
+private var _defaultRemoveEvent = Lifecycle.Event.ON_DESTROY
+    set(value) {
+        value.checkValid()
+        field = value
+    }
 
 /**
- * The default moshi instance which will be in [Preference.customMoshi]
+ * The default remove event when addListener with a lifecycle owner is used
  */
-var PreferencesPlugins.defaultMoshi: Moshi
-    get() = _defaultMoshi
-    set(value) { _defaultMoshi = value }
+var KPrefsPlugins.defaultRemoveEvent: Lifecycle.Event
+    get() = _defaultRemoveEvent
+    set(value) { _defaultRemoveEvent = value }

@@ -47,13 +47,13 @@ interface Preference<T> {
     fun delete()
 
     /**
-     * Adds a listener which will be notified on change
-     * Returns the same listener for convenience
+     * Adds the [listener] which will be notified on changes
+     * Returns the same [listener] for convenience
      */
     fun addListener(listener: ChangeListener<T>): ChangeListener<T>
 
     /**
-     * Removes the listener
+     * Removes the [listener]
      */
     fun removeListener(listener: ChangeListener<T>)
 
@@ -62,8 +62,14 @@ interface Preference<T> {
      */
     interface Converter<T> {
 
+        /**
+         * Takes [serialized] and returns a [T]
+         */
         fun deserialize(serialized: String): T
 
+        /**
+         * Takes a [T] and returns a [String]
+         */
         fun serialize(value: T): String
 
     }

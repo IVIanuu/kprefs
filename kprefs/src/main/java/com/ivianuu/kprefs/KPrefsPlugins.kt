@@ -20,5 +20,8 @@ package com.ivianuu.kprefs
  * Global config
  */
 object KPrefsPlugins {
-    var useCommit = true
+    /**
+     * Whether or not commit should be used
+     */
+    var useCommit = false
 }

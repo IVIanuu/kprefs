@@ -96,7 +96,7 @@ internal class RealPreference<T>(
         }
     }
 
-    interface Adapter<T> {
+    internal interface Adapter<T> {
 
         fun get(key: String, preferences: SharedPreferences): T
 
