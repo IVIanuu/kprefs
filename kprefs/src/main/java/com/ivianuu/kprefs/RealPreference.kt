@@ -55,7 +55,7 @@ internal class RealPreference<T>(
     private val changeListener: (String) -> Unit = { key ->
         if (this.key == key) {
             val value = value
-            changeListeners.forEach { it(value) }
+            changeListeners.toSet().forEach { it(value) }
         }
     }
 
