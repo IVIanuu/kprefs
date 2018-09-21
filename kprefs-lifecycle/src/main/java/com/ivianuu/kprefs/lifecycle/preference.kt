@@ -55,7 +55,7 @@ val <T> Preference<T>.liveData: LiveData<T>
 
 private class PreferenceLiveData<T>(private val preference: Preference<T>) : LiveData<T>() {
 
-    private val listener: (T) -> Unit = { value = it }
+    private val listener: ChangeListener<T> = { value = it }
 
     override fun onActive() {
         super.onActive()

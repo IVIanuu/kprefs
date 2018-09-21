@@ -16,6 +16,7 @@
 
 package com.ivianuu.kprefs.rx
 
+import com.ivianuu.kprefs.ChangeListener
 import com.ivianuu.kprefs.Preference
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -29,7 +30,7 @@ val <T> Preference<T>.observable: Observable<T>
 
 private class PreferenceObservableOnSubscribe<T>(private val preference: Preference<T>) : ObservableOnSubscribe<T> {
     override fun subscribe(emitter: ObservableEmitter<T>) {
-        val listener: (T) -> Unit = {
+        val listener: ChangeListener<T> = {
             if (!emitter.isDisposed) {
                 emitter.onNext(it)
             }

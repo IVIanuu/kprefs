@@ -23,7 +23,7 @@ import android.content.SharedPreferences
  * Actual implementation of a [Preference]
  */
 internal class RealPreference<T>(
-    private val listeners: Listeners,
+    private val listeners: ChangeListeners,
     private val preferences: SharedPreferences,
     private val adapter: Adapter<T>,
     override val key: String,

@@ -26,7 +26,7 @@ import kotlin.reflect.KClass
  */
 class KSharedPreferences private constructor(private val sharedPreferences: SharedPreferences) {
 
-    private val listeners = Listeners(sharedPreferences)
+    private val listeners = ChangeListeners(sharedPreferences)
 
     /**
      * Returns a new [BooleanPreference]

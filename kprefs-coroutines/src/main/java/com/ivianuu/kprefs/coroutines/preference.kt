@@ -16,6 +16,7 @@
 
 package com.ivianuu.kprefs.coroutines
 
+import com.ivianuu.kprefs.ChangeListener
 import com.ivianuu.kprefs.Preference
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.ReceiveChannel
@@ -27,7 +28,7 @@ val <T> Preference<T>.receiveChannel: ReceiveChannel<T>
     get() {
 // todo improve this there must be a better way than using a conflated broadcast channel
         val channel = ConflatedBroadcastChannel<T>()
-        val listener: (T) -> Unit = { channel.offer(it) }
+        val listener: ChangeListener<T> = { channel.offer(it) }
         channel.invokeOnClose { removeListener(listener) }
         addListener(listener)
         return channel.openSubscription()

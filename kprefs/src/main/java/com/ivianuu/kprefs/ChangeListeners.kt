@@ -18,7 +18,7 @@ package com.ivianuu.kprefs
 
 import android.content.SharedPreferences
 
-internal class Listeners(private val preferences: SharedPreferences) {
+internal class ChangeListeners(private val preferences: SharedPreferences) {
 
     private val listeners = mutableSetOf<(String) -> Unit>()
 
