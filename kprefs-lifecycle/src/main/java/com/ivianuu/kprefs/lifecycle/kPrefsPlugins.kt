@@ -27,7 +27,6 @@ private var _defaultRemoveEvent = Lifecycle.Event.ON_DESTROY
 
 /**
  * The default remove event when addListener with a lifecycle owner is used
- * .
  */
 var KPrefsPlugins.defaultRemoveEvent: Lifecycle.Event
     get() = _defaultRemoveEvent
