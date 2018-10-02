@@ -17,14 +17,14 @@
 package com.ivianuu.kprefs.coroutines
 
 import com.ivianuu.kprefs.ChangeListener
-import com.ivianuu.kprefs.Preference
+import com.ivianuu.kprefs.Pref
 import kotlinx.coroutines.channels.ConflatedBroadcastChannel
 import kotlinx.coroutines.channels.ReceiveChannel
 
 /**
  * Returns a [ReceiveChannel] which emits on changes
  */
-val <T> Preference<T>.receiveChannel: ReceiveChannel<T>
+val <T> Pref<T>.receiveChannel: ReceiveChannel<T>
     get() {
 // todo improve this there must be a better way than using a conflated broadcast channel
         val channel = ConflatedBroadcastChannel<T>()

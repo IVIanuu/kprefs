@@ -20,7 +20,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.ivianuu.kprefs.KSharedPreferences
+import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.coroutines.receiveChannel
 import com.ivianuu.kprefs.lifecycle.addListener
 import com.ivianuu.kprefs.lifecycle.liveData
@@ -37,9 +37,9 @@ import kotlinx.coroutines.launch
  */
 class MainActivity : AppCompatActivity() {
 
-    private val preferences by lazy { KSharedPreferences(this) }
+    private val prefs by lazy { KPrefs(this) }
 
-    private val myPref by lazy { preferences.boolean("my_pref") }
+    private val myPref by lazy { prefs.boolean("my_pref") }
 
     private val disposables = CompositeDisposable()
 

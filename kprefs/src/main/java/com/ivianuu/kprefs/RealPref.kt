@@ -20,29 +20,29 @@ import android.annotation.SuppressLint
 import android.content.SharedPreferences
 
 /**
- * Actual implementation of a [Preference]
+ * Actual implementation of a [Pref]
  */
-internal class RealPreference<T>(
+internal class RealPref<T>(
     private val listeners: ChangeListeners,
-    private val preferences: SharedPreferences,
+    private val sharedPrefs: SharedPreferences,
     private val adapter: Adapter<T>,
     override val key: String,
     override val defaultValue: T
-) : Preference<T> {
+) : Pref<T> {
 
-    override val isSet get() = preferences.contains(key)
+    override val isSet get() = sharedPrefs.contains(key)
 
     override var value: T
         get() {
             return if (isSet) {
-                adapter.get(key, preferences)
+                adapter.get(key, sharedPrefs)
             } else {
                 defaultValue
             }
         }
         @SuppressLint("ApplySharedPref")
         set(value) {
-            preferences.edit().apply {
+            sharedPrefs.edit().apply {
                 adapter.set(key, value, this)
                 if (KPrefsPlugins.useCommit) {
                     commit()
@@ -64,7 +64,7 @@ internal class RealPreference<T>(
 
     @SuppressLint("ApplySharedPref")
     override fun delete() {
-        preferences.edit().apply {
+        sharedPrefs.edit().apply {
             remove(key)
             if (KPrefsPlugins.useCommit) {
                 commit()

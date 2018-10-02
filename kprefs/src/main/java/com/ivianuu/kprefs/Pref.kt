@@ -17,9 +17,9 @@
 package com.ivianuu.kprefs
 
 /**
- * Preference
+ * Pref
  */
-interface Preference<T> {
+interface Pref<T> {
 
     /**
      * The key of this preference

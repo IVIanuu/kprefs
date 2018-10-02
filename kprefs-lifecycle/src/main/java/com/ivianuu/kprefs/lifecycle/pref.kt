@@ -21,12 +21,12 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import com.ivianuu.kprefs.ChangeListener
-import com.ivianuu.kprefs.Preference
+import com.ivianuu.kprefs.Pref
 
 /**
- * Adds the [listener] and automatically calls [Preference.removeListener] on [removeEvent]
+ * Adds the [listener] and automatically calls [Pref.removeListener] on [removeEvent]
  */
-fun <T> Preference<T>.addListener(
+fun <T> Pref<T>.addListener(
     owner: LifecycleOwner,
     removeEvent: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
     listener: ChangeListener<T>
@@ -50,21 +50,21 @@ fun <T> Preference<T>.addListener(
 /**
  * Returns a [LiveData] which contains the latest value of [this]
  */
-val <T> Preference<T>.liveData: LiveData<T>
+val <T> Pref<T>.liveData: LiveData<T>
     get() = PreferenceLiveData(this)
 
-private class PreferenceLiveData<T>(private val preference: Preference<T>) : LiveData<T>() {
+private class PreferenceLiveData<T>(private val pref: Pref<T>) : LiveData<T>() {
 
     private val listener: ChangeListener<T> = { value = it }
 
     override fun onActive() {
         super.onActive()
-        preference.addListener(listener)
+        pref.addListener(listener)
     }
 
     override fun onInactive() {
         super.onInactive()
-        preference.removeListener(listener)
+        pref.removeListener(listener)
     }
 
 }

@@ -16,13 +16,13 @@
 
 package com.ivianuu.kprefs
 
-typealias BooleanPreference = Preference<Boolean>
-typealias CustomPreference<T> = Preference<T>
-typealias EnumPreference<T> = Preference<T>
-typealias FloatPreference = Preference<Float>
-typealias IntPreference = Preference<Int>
-typealias LongPreference = Preference<Long>
-typealias StringPreference = Preference<String>
-typealias StringSetPreference = Preference<Set<String>>
+typealias BooleanPref = Pref<Boolean>
+typealias CustomPref<T> = Pref<T>
+typealias EnumPref<T> = Pref<T>
+typealias FloatPref = Pref<Float>
+typealias IntPref = Pref<Int>
+typealias LongPref = Pref<Long>
+typealias StringPref = Pref<String>
+typealias StringSetPref = Pref<Set<String>>
 
 typealias ChangeListener<T> = (T) -> Unit
