@@ -24,12 +24,6 @@ import io.reactivex.ObservableOnSubscribe
 import io.reactivex.functions.Consumer
 
 /**
- * Sets the value which is received in [Consumer.accept]
- */
-val <T> Pref<T>.consumer: Consumer<T>
-    get() = Consumer(::set)
-
-/**
  * Returns a [Observable] which emits on changes of [this]
  */
 val <T> Pref<T>.observable: Observable<T>
