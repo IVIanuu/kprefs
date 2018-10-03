@@ -18,11 +18,11 @@ package com.ivianuu.kprefs
 
 import android.content.SharedPreferences
 
-internal class ChangeListeners(private val preferences: SharedPreferences) {
+internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
 
     private val listeners = mutableSetOf<(String) -> Unit>()
 
-    private val sharedPreferencesChangeListener =
+    private val sharedPrefsChangeListener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             listeners.toSet().forEach { it(key) }
     }
@@ -33,7 +33,7 @@ internal class ChangeListeners(private val preferences: SharedPreferences) {
         listeners.add(listener)
 
         if (!listenerRegistered) {
-            preferences.registerOnSharedPreferenceChangeListener(sharedPreferencesChangeListener)
+            sharedPrefs.registerOnSharedPreferenceChangeListener(sharedPrefsChangeListener)
             listenerRegistered = true
         }
     }
@@ -41,7 +41,7 @@ internal class ChangeListeners(private val preferences: SharedPreferences) {
     fun removeListener(listener: (String) -> Unit) {
         listeners.remove(listener)
         if (listeners.isEmpty() && listenerRegistered) {
-            preferences.registerOnSharedPreferenceChangeListener(sharedPreferencesChangeListener)
+            sharedPrefs.registerOnSharedPreferenceChangeListener(sharedPrefsChangeListener)
             listenerRegistered = false
         }
     }
