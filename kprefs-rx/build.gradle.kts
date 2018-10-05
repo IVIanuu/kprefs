@@ -52,7 +52,7 @@ val javadoc = task("javadoc", Javadoc::class) {
 }
 
 val javadocJar = task("javadocJar", Jar::class) {
-    dependsOn("javadoc")
+    dependsOn(javadoc)
     classifier = "javadoc"
     from(javadoc.destinationDir)
 }
