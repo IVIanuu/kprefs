@@ -29,6 +29,7 @@ android {
     compileSdkVersion(Build.compileSdk)
 
     defaultConfig {
+        buildToolsVersion = Build.buildToolsVersion
         minSdkVersion(Build.minSdk)
         targetSdkVersion(Build.targetSdk)
     }
