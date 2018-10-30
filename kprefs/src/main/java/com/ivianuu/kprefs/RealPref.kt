@@ -32,35 +32,33 @@ internal class RealPref<T>(
 
     override val isSet get() = sharedPrefs.contains(key)
 
-    override var value: T
-        get() {
-            return if (isSet) {
-                adapter.get(key, sharedPrefs)
-            } else {
-                defaultValue
-            }
-        }
-        @SuppressLint("ApplySharedPref")
-        set(value) {
-            sharedPrefs.edit().apply {
-                adapter.set(key, value, this)
-                if (KPrefsPlugins.useCommit) {
-                    commit()
-                } else {
-                    apply()
-                }
-            }
-        }
-
     private val changeListener: (String) -> Unit = { key ->
         if (this.key == key) {
-            val value = value
+            val value = get()
             changeListeners.toSet().forEach { it(value) }
         }
     }
 
     private val changeListeners = mutableSetOf<ChangeListener<T>>()
     private var listeningForChanges = false
+
+    override fun get() = if (isSet) {
+        adapter.get(key, sharedPrefs)
+    } else {
+        defaultValue
+    }
+
+    @SuppressLint("ApplySharedPref")
+    override fun set(value: T) {
+        sharedPrefs.edit().apply {
+            adapter.set(key, value, this)
+            if (KPrefsPlugins.useCommit) {
+                commit()
+            } else {
+                apply()
+            }
+        }
+    }
 
     @SuppressLint("ApplySharedPref")
     override fun delete() {
@@ -78,7 +76,7 @@ internal class RealPref<T>(
         changeListeners.add(listener)
 
         // dispatch the current value
-        listener(value)
+        listener(get())
 
         if (!listeningForChanges) {
             listeners.addListener(changeListener)

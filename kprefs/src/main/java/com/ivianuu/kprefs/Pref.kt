@@ -32,14 +32,19 @@ interface Pref<T> {
     val defaultValue: T
 
     /**
-     * The current value of this preference
-     */
-    var value: T
-
-    /**
      * Whether or not a value for this preference is set or not
      */
     val isSet: Boolean
+
+    /**
+     * Returns the current value
+     */
+    fun get(): T
+
+    /**
+     * Sets the value of this [Pref] to [value]
+     */
+    fun set(value: T)
 
     /**
      * Deletes the value for this preferences

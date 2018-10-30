@@ -18,15 +18,12 @@ package com.ivianuu.kprefs.sample
 
 import android.os.Bundle
 import android.util.Log
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.coroutines.receiveChannel
 import com.ivianuu.kprefs.lifecycle.addListener
 import com.ivianuu.kprefs.lifecycle.liveData
 import com.ivianuu.kprefs.rx.observable
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.consumeEach
@@ -69,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             checkbox.isChecked = it
         }
 
-        checkbox.setOnCheckedChangeListener { _, isChecked -> myPref.value = isChecked }
+        checkbox.setOnCheckedChangeListener { _, isChecked -> myPref.set(isChecked) }
     }
 
     override fun onDestroy() {

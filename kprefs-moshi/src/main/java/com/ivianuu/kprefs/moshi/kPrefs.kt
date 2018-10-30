@@ -16,8 +16,8 @@
 
 package com.ivianuu.kprefs.moshi
 
-import com.ivianuu.kprefs.KPrefsPlugins
 import com.ivianuu.kprefs.KPrefs
+import com.ivianuu.kprefs.KPrefsPlugins
 import com.ivianuu.kprefs.Pref
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi

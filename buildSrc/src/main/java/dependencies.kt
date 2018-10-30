@@ -12,11 +12,11 @@ object Build {
 }
 
 object Versions {
-    const val androidGradlePlugin = "3.2.0"
+    const val androidGradlePlugin = "3.2.1"
     const val androidx = "1.0.0"
     const val androidxArch = "2.0.0-rc01"
     const val coroutines = "0.26.1-eap13"
-    const val kotlin = "1.3.0-rc-57"
+    const val kotlin = "1.3.0"
     const val mavenGradle = "2.1"
     const val moshi = "1.6.0"
     const val rxJava = "2.2.2"
