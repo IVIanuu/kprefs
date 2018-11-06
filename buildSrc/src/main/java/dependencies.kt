@@ -2,7 +2,7 @@
 
 object Build {
     const val applicationId = "com.ivianuu.kprefs.sample"
-    const val buildToolsVersion = "28.0.2"
+    const val buildToolsVersion = "28.0.3"
     const val compileSdk = 28
     const val minSdk = 14
     const val targetSdk = 28

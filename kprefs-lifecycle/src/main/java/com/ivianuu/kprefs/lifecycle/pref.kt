@@ -21,6 +21,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import com.ivianuu.kprefs.ChangeListener
+import com.ivianuu.kprefs.KPrefsPlugins
 import com.ivianuu.kprefs.Pref
 
 /**
@@ -28,7 +29,7 @@ import com.ivianuu.kprefs.Pref
  */
 fun <T> Pref<T>.addListener(
     owner: LifecycleOwner,
-    removeEvent: Lifecycle.Event = Lifecycle.Event.ON_DESTROY,
+    removeEvent: Lifecycle.Event = KPrefsPlugins.defaultRemoveEvent,
     listener: ChangeListener<T>
 ): ChangeListener<T> {
     removeEvent.checkValid()
