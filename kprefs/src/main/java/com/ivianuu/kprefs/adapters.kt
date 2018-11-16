@@ -19,24 +19,14 @@ package com.ivianuu.kprefs
 import android.content.SharedPreferences
 import kotlin.reflect.KClass
 
-internal object BooleanAdapter : RealPref.Adapter<Boolean> {
+internal object BooleanAdapter : Pref.Adapter<Boolean> {
     override fun get(key: String, preferences: SharedPreferences) = preferences.getBoolean(key, false)
     override fun set(key: String, value: Boolean, editor: SharedPreferences.Editor) {
         editor.putBoolean(key, value)
     }
 }
 
-internal class ConverterAdapter<T>(private val converter: Pref.Converter<T>) :
-    RealPref.Adapter<T> {
-    override fun get(key: String, preferences: SharedPreferences) =
-        converter.deserialize(preferences.getString(key, "")!!)
-
-    override fun set(key: String, value: T, editor: SharedPreferences.Editor) {
-        editor.putString(key, converter.serialize(value))
-    }
-}
-
-internal class EnumAdapter<T : Enum<T>>(private val enumClass: KClass<T>) : RealPref.Adapter<T> {
+internal class EnumAdapter<T : Enum<T>>(private val enumClass: KClass<T>) : Pref.Adapter<T> {
     override fun get(key: String, preferences: SharedPreferences): T =
         java.lang.Enum.valueOf(enumClass.java, preferences.getString(key, "")!!)
 
@@ -45,7 +35,7 @@ internal class EnumAdapter<T : Enum<T>>(private val enumClass: KClass<T>) : Real
     }
 }
 
-internal object FloatAdapter : RealPref.Adapter<Float> {
+internal object FloatAdapter : Pref.Adapter<Float> {
     override fun get(key: String, preferences: SharedPreferences) =
         preferences.getFloat(key, 0f)
     override fun set(key: String, value: Float, editor: SharedPreferences.Editor) {
@@ -53,28 +43,28 @@ internal object FloatAdapter : RealPref.Adapter<Float> {
     }
 }
 
-internal object IntAdapter : RealPref.Adapter<Int> {
+internal object IntAdapter : Pref.Adapter<Int> {
     override fun get(key: String, preferences: SharedPreferences) = preferences.getInt(key, 0)
     override fun set(key: String, value: Int, editor: SharedPreferences.Editor) {
         editor.putInt(key, value)
     }
 }
 
-internal object LongAdapter : RealPref.Adapter<Long> {
+internal object LongAdapter : Pref.Adapter<Long> {
     override fun get(key: String, preferences: SharedPreferences) = preferences.getLong(key, 0L)
     override fun set(key: String, value: Long, editor: SharedPreferences.Editor) {
         editor.putLong(key, value)
     }
 }
 
-internal object StringAdapter : RealPref.Adapter<String> {
+internal object StringAdapter : Pref.Adapter<String> {
     override fun get(key: String, preferences: SharedPreferences): String = preferences.getString(key, "")!!
     override fun set(key: String, value: String, editor: SharedPreferences.Editor) {
         editor.putString(key, value)
     }
 }
 
-internal object StringSetAdapter : RealPref.Adapter<Set<String>> {
+internal object StringSetAdapter : Pref.Adapter<Set<String>> {
     override fun get(key: String, preferences: SharedPreferences): Set<String> = preferences.getStringSet(key, emptySet())!!
     override fun set(key: String, value: Set<String>, editor: SharedPreferences.Editor) {
         editor.putStringSet(key, value)

@@ -79,8 +79,8 @@ class KPrefs private constructor(private val sharedPrefs: SharedPreferences) {
     /**
      * Returns a new [CustomPref]
      */
-    fun <T> custom(key: String, defaultValue: T, converter: Pref.Converter<T>): CustomPref<T> =
-        RealPref(listeners, sharedPrefs, ConverterAdapter(converter), key, defaultValue)
+    fun <T> custom(key: String, defaultValue: T, adapter: Pref.Adapter<T>): CustomPref<T> =
+        RealPref(listeners, sharedPrefs, adapter, key, defaultValue)
 
     @SuppressLint("ApplySharedPref")
     fun clear() {

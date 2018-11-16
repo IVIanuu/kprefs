@@ -16,6 +16,7 @@
 
 package com.ivianuu.kprefs.moshi
 
+import android.content.SharedPreferences
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.KPrefsPlugins
 import com.ivianuu.kprefs.Pref
@@ -24,7 +25,7 @@ import com.squareup.moshi.Moshi
 import kotlin.reflect.KClass
 
 /**
- * Returns a [CustomPreference] of type [T] which will be deserialized/serialized by [moshi]
+ * Returns a [CustomPref] of type [T] which will be deserialized/serialized by [moshi]
  */
 inline fun <reified T : Any> KPrefs.customMoshi(
     key: String,
@@ -33,18 +34,22 @@ inline fun <reified T : Any> KPrefs.customMoshi(
 ) = customMoshi(key, defaultValue, T::class, moshi)
 
 /**
- * Returns a [CustomPreference] of type [T] which will be deserialized/serialized by [moshi]
+ * Returns a [CustomPref] of type [T] which will be deserialized/serialized by [moshi]
  */
 fun <T : Any> KPrefs.customMoshi(
     key: String,
     defaultValue: T,
     clazz: KClass<T>,
     moshi: Moshi = KPrefsPlugins.defaultMoshi
-) = custom(key, defaultValue, MoshiConverter(moshi.adapter(clazz.java)))
+) = custom(key, defaultValue, MoshiAdapter(moshi.adapter(clazz.java)))
 
-private class MoshiConverter<T>(private val adapter: JsonAdapter<T>) : Pref.Converter<T> {
+private class MoshiAdapter<T>(private val jsonAdapter: JsonAdapter<T>) : Pref.Adapter<T> {
 
-    override fun deserialize(serialized: String) = adapter.fromJson(serialized)!!
+    override fun get(key: String, preferences: SharedPreferences) =
+        jsonAdapter.fromJson(preferences.getString(key, "")!!)!!
 
-    override fun serialize(value: T): String = adapter.toJson(value)
+    override fun set(key: String, value: T, editor: SharedPreferences.Editor) {
+        editor.putString(key, jsonAdapter.toJson(value))
+    }
+
 }

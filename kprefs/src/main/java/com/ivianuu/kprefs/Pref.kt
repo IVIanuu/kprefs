@@ -16,6 +16,8 @@
 
 package com.ivianuu.kprefs
 
+import android.content.SharedPreferences
+
 /**
  * Pref
  */
@@ -63,19 +65,19 @@ interface Pref<T> {
     fun removeListener(listener: ChangeListener<T>)
 
     /**
-     * Converts [T]'s to [String]'s and vice versa
+     * Reads and writes values of [T] to [SharedPreferences]
      */
-    interface Converter<T> {
+    interface Adapter<T> {
 
         /**
-         * Takes [serialized] and returns a [T]
+         * Reads the value
          */
-        fun deserialize(serialized: String): T
+        fun get(key: String, preferences: SharedPreferences): T
 
         /**
-         * Takes a [T] and returns a [String]
+         * Writes the value
          */
-        fun serialize(value: T): String
+        fun set(key: String, value: T, editor: SharedPreferences.Editor)
 
     }
 }

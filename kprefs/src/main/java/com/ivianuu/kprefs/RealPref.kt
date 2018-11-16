@@ -25,7 +25,7 @@ import android.content.SharedPreferences
 internal class RealPref<T>(
     private val listeners: ChangeListeners,
     private val sharedPrefs: SharedPreferences,
-    private val adapter: Adapter<T>,
+    private val adapter: Pref.Adapter<T>,
     override val key: String,
     override val defaultValue: T
 ) : Pref<T> {
@@ -96,11 +96,4 @@ internal class RealPref<T>(
         }
     }
 
-    internal interface Adapter<T> {
-
-        fun get(key: String, preferences: SharedPreferences): T
-
-        fun set(key: String, value: T, editor: SharedPreferences.Editor)
-
-    }
 }

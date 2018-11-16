@@ -18,6 +18,7 @@ package com.ivianuu.kprefs.sample
 
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.coroutines.receiveChannel
 import com.ivianuu.kprefs.lifecycle.addListener
