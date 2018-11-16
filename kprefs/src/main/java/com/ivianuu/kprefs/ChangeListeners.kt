@@ -20,16 +20,18 @@ import android.content.SharedPreferences
 
 internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
 
-    private val listeners = mutableSetOf<(String) -> Unit>()
+    private val listeners = mutableListOf<(String) -> Unit>()
 
     private val sharedPrefsChangeListener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            listeners.toSet().forEach { it(key) }
+            listeners.toList().forEach { it(key) }
     }
 
     private var listenerRegistered = false
 
     fun addListener(listener: (String) -> Unit) {
+        if (listeners.contains(listener)) return
+
         listeners.add(listener)
 
         if (!listenerRegistered) {

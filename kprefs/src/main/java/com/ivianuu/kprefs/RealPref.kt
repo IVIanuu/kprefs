@@ -35,11 +35,11 @@ internal class RealPref<T>(
     private val changeListener: (String) -> Unit = { key ->
         if (this.key == key) {
             val value = get()
-            changeListeners.toSet().forEach { it(value) }
+            changeListeners.toList().forEach { it(value) }
         }
     }
 
-    private val changeListeners = mutableSetOf<ChangeListener<T>>()
+    private val changeListeners = mutableListOf<ChangeListener<T>>()
     private var listeningForChanges = false
 
     override fun get() = if (isSet) {
@@ -73,6 +73,8 @@ internal class RealPref<T>(
     }
 
     override fun addListener(listener: ChangeListener<T>): ChangeListener<T> {
+        if (changeListeners.contains(listener)) return listener
+
         changeListeners.add(listener)
 
         // dispatch the current value
