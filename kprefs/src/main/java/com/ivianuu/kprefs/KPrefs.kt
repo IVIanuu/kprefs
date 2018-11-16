@@ -94,12 +94,12 @@ class KPrefs private constructor(private val sharedPrefs: SharedPreferences) {
     }
 
     companion object {
-        private const val DEFAULT_BOOLEAN = false
-        private const val DEFAULT_FLOAT = 0f
-        private const val DEFAULT_INT = 0
-        private const val DEFAULT_LONG = 0L
-        private const val DEFAULT_STRING = ""
-        private val DEFAULT_STRING_SET = emptySet<String>()
+        internal const val DEFAULT_BOOLEAN = false
+        internal const val DEFAULT_FLOAT = 0f
+        internal const val DEFAULT_INT = 0
+        internal const val DEFAULT_LONG = 0L
+        internal const val DEFAULT_STRING = ""
+        internal val DEFAULT_STRING_SET = emptySet<String>()
 
         /**
          * Returns a new [KPrefs] instance which uses [sharedPrefs] internally
