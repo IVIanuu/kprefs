@@ -36,6 +36,9 @@ android {
 
 dependencies {
     api(Deps.kotlinStdLib)
+    testImplementation(Deps.junit)
+    testImplementation(Deps.mockitoKotlin)
+    testImplementation(Deps.roboelectric)
 }
 
 val sourcesJar = task("sourcesJar", Jar::class) {

@@ -43,7 +43,7 @@ internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
     fun removeListener(listener: (String) -> Unit) {
         listeners.remove(listener)
         if (listeners.isEmpty() && listenerRegistered) {
-            sharedPrefs.registerOnSharedPreferenceChangeListener(sharedPrefsChangeListener)
+            sharedPrefs.unregisterOnSharedPreferenceChangeListener(sharedPrefsChangeListener)
             listenerRegistered = false
         }
     }
