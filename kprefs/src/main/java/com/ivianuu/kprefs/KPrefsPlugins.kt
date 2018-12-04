@@ -21,7 +21,8 @@ package com.ivianuu.kprefs
  */
 object KPrefsPlugins {
     /**
-     * Whether or not commit should be used
+     * Whether or not [android.content.SharedPreferences.Editor.commit] should be used
+     * Instead of [android.content.SharedPreferences.Editor.apply]
      */
     var useCommit = false
 }

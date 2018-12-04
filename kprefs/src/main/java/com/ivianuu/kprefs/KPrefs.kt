@@ -24,95 +24,75 @@ import kotlin.reflect.KClass
 /**
  * KPrefs
  */
-class KPrefs private constructor(private val sharedPrefs: SharedPreferences) {
+interface KPrefs {
 
-    private val listeners = ChangeListeners(sharedPrefs)
+    /**
+     * The underlying shared preferences instance
+     */
+    val sharedPrefs: SharedPreferences
 
     /**
      * Returns a new [BooleanPref]
      */
-    fun boolean(key: String, defaultValue: Boolean = DEFAULT_BOOLEAN): BooleanPref =
-        RealPref(listeners, sharedPrefs, BooleanAdapter, key, defaultValue)
+    fun boolean(key: String, defaultValue: Boolean = RealKPrefs.DEFAULT_BOOLEAN): BooleanPref
 
     /**
      * Returns a new [EnumPref]
      */
-    inline fun <reified T : Enum<T>> enum(key: String, defaultValue: T) =
-            enum(key, defaultValue, T::class)
-
-    /**
-     * Returns a new [EnumPref]
-     */
-    fun <T : Enum<T>> enum(key: String, defaultValue: T, clazz: KClass<T>): EnumPref<T> =
-        RealPref(listeners, sharedPrefs, EnumAdapter(clazz), key, defaultValue)
+    fun <T : Enum<T>> enum(key: String, defaultValue: T, clazz: KClass<T>): EnumPref<T>
 
     /**
      * Returns a new [FloatPref]
      */
-    fun float(key: String, defaultValue: Float = DEFAULT_FLOAT): FloatPref =
-        RealPref(listeners, sharedPrefs, FloatAdapter, key, defaultValue)
+    fun float(key: String, defaultValue: Float = RealKPrefs.DEFAULT_FLOAT): FloatPref
 
     /**
      * Returns a new [IntPref]
      */
-    fun int(key: String, defaultValue: Int = DEFAULT_INT): IntPref =
-        RealPref(listeners, sharedPrefs, IntAdapter, key, defaultValue)
+    fun int(key: String, defaultValue: Int = RealKPrefs.DEFAULT_INT): IntPref
 
     /**
      * Returns a new [LongPref]
      */
-    fun long(key: String, defaultValue: Long = DEFAULT_LONG): LongPref =
-        RealPref(listeners, sharedPrefs, LongAdapter, key, defaultValue)
+    fun long(key: String, defaultValue: Long = RealKPrefs.DEFAULT_LONG): LongPref
 
     /**
      * Returns a new [StringPref]
      */
-    fun string(key: String, defaultValue: String = DEFAULT_STRING): StringPref =
-        RealPref(listeners, sharedPrefs, StringAdapter, key, defaultValue)
+    fun string(key: String, defaultValue: String = RealKPrefs.DEFAULT_STRING): StringPref
 
     /**
      * Returns a new [StringSetPref]
      */
-    fun stringSet(key: String, defaultValue: Set<String> = DEFAULT_STRING_SET): StringSetPref =
-        RealPref(listeners, sharedPrefs, StringSetAdapter, key, defaultValue)
+    fun stringSet(key: String, defaultValue: Set<String> = RealKPrefs.DEFAULT_STRING_SET): StringSetPref
 
     /**
      * Returns a new [CustomPref]
      */
-    fun <T> custom(key: String, defaultValue: T, adapter: Pref.Adapter<T>): CustomPref<T> =
-        RealPref(listeners, sharedPrefs, adapter, key, defaultValue)
+    fun <T> custom(key: String, defaultValue: T, adapter: Pref.Adapter<T>): CustomPref<T>
 
-    @SuppressLint("ApplySharedPref")
-    fun clear() {
-        sharedPrefs.edit().clear().apply {
-            if (KPrefsPlugins.useCommit) {
-                commit()
-            } else {
-                apply()
-            }
-        }
-    }
-
-    companion object {
-        internal const val DEFAULT_BOOLEAN = false
-        internal const val DEFAULT_FLOAT = 0f
-        internal const val DEFAULT_INT = 0
-        internal const val DEFAULT_LONG = 0L
-        internal const val DEFAULT_STRING = ""
-        internal val DEFAULT_STRING_SET = emptySet<String>()
-
-        /**
-         * Returns a new [KPrefs] instance which uses [sharedPrefs] internally
-         */
-        operator fun invoke(sharedPrefs: SharedPreferences) =
-            KPrefs(sharedPrefs)
-
-        /**
-         * Returns a new [KPrefs] instance which uses the default [SharedPreferences]
-         */
-        operator fun invoke(context: Context) =
-                invoke(context.getSharedPreferences(
-                    context.packageName + "_preferences", Context.MODE_PRIVATE))
-
-    }
+    /**
+     * Clears all values
+     */
+    fun clear()
 }
+
+/**
+ * Returns a new [KPrefs] instance which uses [sharedPrefs] internally
+ */
+fun KPrefs(sharedPrefs: SharedPreferences): KPrefs = RealKPrefs(sharedPrefs)
+
+/**
+ * Returns a new [KPrefs] instance which uses the [SharedPreferences] with the [name] and [mode]
+ */
+fun KPrefs(
+    context: Context,
+    name: String = context.packageName + "_preferences",
+    mode: Int = Context.MODE_PRIVATE
+) = KPrefs(context.getSharedPreferences(name, mode))
+
+/**
+ * Returns a new [EnumPref]
+ */
+inline fun <reified T : Enum<T>> KPrefs.enum(key: String, defaultValue: T) =
+    enum(key, defaultValue, T::class)
