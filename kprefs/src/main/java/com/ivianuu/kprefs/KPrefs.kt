@@ -16,7 +16,6 @@
 
 package com.ivianuu.kprefs
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import kotlin.reflect.KClass

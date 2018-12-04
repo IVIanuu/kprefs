@@ -21,7 +21,6 @@ import com.ivianuu.kprefs.Pref
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
-import io.reactivex.functions.Consumer
 
 /**
  * Returns a [Observable] which emits on changes of [this]
