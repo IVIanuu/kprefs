@@ -1,7 +1,7 @@
 include(
     "kprefs",
     "kprefs-coroutines",
-    "kprefs-lifecycle",
+    "kprefs-livedata",
     "kprefs-moshi",
     "kprefs-rx",
     "sample"

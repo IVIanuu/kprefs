@@ -14,20 +14,12 @@
  * limitations under the License.
  */
 
-package com.ivianuu.kprefs.lifecycle
+package com.ivianuu.kprefs.livedata
 
 import androidx.lifecycle.Lifecycle
-import com.ivianuu.kprefs.KPrefsPlugins
 
-private var _defaultRemoveEvent = Lifecycle.Event.ON_DESTROY
-    set(value) {
-        value.checkValid()
-        field = value
+fun Lifecycle.Event.checkValid() {
+    if (this == Lifecycle.Event.ON_ANY) {
+        throw IllegalArgumentException("ON_ANY is not allowed")
     }
-
-/**
- * The default remove event when addListener with a lifecycle owner is used
- */
-var KPrefsPlugins.defaultRemoveEvent: Lifecycle.Event
-    get() = _defaultRemoveEvent
-    set(value) { _defaultRemoveEvent = value }
+}

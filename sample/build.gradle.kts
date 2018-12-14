@@ -46,7 +46,7 @@ dependencies {
     implementation(Deps.androidxAppCompat)
     implementation(project(":kprefs"))
     implementation(project(":kprefs-coroutines"))
-    implementation(project(":kprefs-lifecycle"))
+    implementation(project(":kprefs-livedata"))
     implementation(project(":kprefs-moshi"))
     implementation(project(":kprefs-rx"))
 }

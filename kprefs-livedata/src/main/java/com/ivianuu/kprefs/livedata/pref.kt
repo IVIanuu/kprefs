@@ -14,39 +14,11 @@
  * limitations under the License.
  */
 
-package com.ivianuu.kprefs.lifecycle
+package com.ivianuu.kprefs.livedata
 
-import androidx.lifecycle.GenericLifecycleObserver
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import com.ivianuu.kprefs.ChangeListener
-import com.ivianuu.kprefs.KPrefsPlugins
 import com.ivianuu.kprefs.Pref
-
-/**
- * Adds the [listener] and automatically calls [Pref.removeListener] on [removeEvent]
- */
-fun <T> Pref<T>.addListener(
-    owner: LifecycleOwner,
-    removeEvent: Lifecycle.Event = KPrefsPlugins.defaultRemoveEvent,
-    listener: ChangeListener<T>
-): ChangeListener<T> {
-    removeEvent.checkValid()
-
-    owner.lifecycle.addObserver(object : GenericLifecycleObserver {
-        override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-            if (event == removeEvent) {
-                owner.lifecycle.removeObserver(this)
-                removeListener(listener)
-            }
-        }
-    })
-
-    addListener(listener)
-
-    return listener
-}
 
 /**
  * Returns a [LiveData] which contains the latest value of [this]
