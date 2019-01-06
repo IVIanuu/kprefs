@@ -20,7 +20,7 @@ import android.content.SharedPreferences
 import kotlin.reflect.KClass
 
 internal object BooleanAdapter : Pref.Adapter<Boolean> {
-    override fun get(key: String, preferences: SharedPreferences) =
+    override fun get(key: String, preferences: SharedPreferences): Boolean =
         preferences.getBoolean(key, RealKPrefs.DEFAULT_BOOLEAN)
     override fun set(key: String, value: Boolean, editor: SharedPreferences.Editor) {
         editor.putBoolean(key, value)
@@ -37,7 +37,7 @@ internal class EnumAdapter<T : Enum<T>>(private val enumClass: KClass<T>) : Pref
 }
 
 internal object FloatAdapter : Pref.Adapter<Float> {
-    override fun get(key: String, preferences: SharedPreferences) =
+    override fun get(key: String, preferences: SharedPreferences): Float =
         preferences.getFloat(key, RealKPrefs.DEFAULT_FLOAT)
     override fun set(key: String, value: Float, editor: SharedPreferences.Editor) {
         editor.putFloat(key, value)
@@ -45,7 +45,7 @@ internal object FloatAdapter : Pref.Adapter<Float> {
 }
 
 internal object IntAdapter : Pref.Adapter<Int> {
-    override fun get(key: String, preferences: SharedPreferences) =
+    override fun get(key: String, preferences: SharedPreferences): Int =
         preferences.getInt(key, RealKPrefs.DEFAULT_INT)
     override fun set(key: String, value: Int, editor: SharedPreferences.Editor) {
         editor.putInt(key, value)
@@ -53,7 +53,7 @@ internal object IntAdapter : Pref.Adapter<Int> {
 }
 
 internal object LongAdapter : Pref.Adapter<Long> {
-    override fun get(key: String, preferences: SharedPreferences) =
+    override fun get(key: String, preferences: SharedPreferences): Long =
         preferences.getLong(key, RealKPrefs.DEFAULT_LONG)
     override fun set(key: String, value: Long, editor: SharedPreferences.Editor) {
         editor.putLong(key, value)

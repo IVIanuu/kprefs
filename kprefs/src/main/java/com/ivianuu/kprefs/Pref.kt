@@ -55,9 +55,8 @@ interface Pref<T> {
 
     /**
      * Adds the [listener] which will be notified on changes
-     * Returns the same [listener] for convenience
      */
-    fun addListener(listener: ChangeListener<T>): ChangeListener<T>
+    fun addListener(listener: ChangeListener<T>)
 
     /**
      * Removes the [listener]

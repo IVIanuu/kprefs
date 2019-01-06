@@ -88,10 +88,10 @@ fun KPrefs(
     context: Context,
     name: String = context.packageName + "_preferences",
     mode: Int = Context.MODE_PRIVATE
-) = KPrefs(context.getSharedPreferences(name, mode))
+): KPrefs = KPrefs(context.getSharedPreferences(name, mode))
 
 /**
  * Returns a new [EnumPref]
  */
-inline fun <reified T : Enum<T>> KPrefs.enum(key: String, defaultValue: T) =
+inline fun <reified T : Enum<T>> KPrefs.enum(key: String, defaultValue: T): CustomPref<T> =
     enum(key, defaultValue, T::class)

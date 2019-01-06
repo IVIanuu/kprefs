@@ -24,22 +24,22 @@ internal class RealKPrefs(override val sharedPrefs: SharedPreferences) : KPrefs 
 
     private val listeners = ChangeListeners(sharedPrefs)
 
-    override fun boolean(key: String, defaultValue: Boolean) =
+    override fun boolean(key: String, defaultValue: Boolean): Pref<Boolean> =
         RealPref(listeners, sharedPrefs, BooleanAdapter, key, defaultValue)
 
-    override fun <T : Enum<T>> enum(key: String, defaultValue: T, clazz: KClass<T>) =
+    override fun <T : Enum<T>> enum(key: String, defaultValue: T, clazz: KClass<T>): CustomPref<T> =
         RealPref(listeners, sharedPrefs, EnumAdapter(clazz), key, defaultValue)
 
-    override fun float(key: String, defaultValue: Float) =
+    override fun float(key: String, defaultValue: Float): Pref<Float> =
         RealPref(listeners, sharedPrefs, FloatAdapter, key, defaultValue)
 
-    override fun int(key: String, defaultValue: Int) =
+    override fun int(key: String, defaultValue: Int): Pref<Int> =
         RealPref(listeners, sharedPrefs, IntAdapter, key, defaultValue)
 
-    override fun long(key: String, defaultValue: Long) =
+    override fun long(key: String, defaultValue: Long): Pref<Long> =
         RealPref(listeners, sharedPrefs, LongAdapter, key, defaultValue)
 
-    override fun string(key: String, defaultValue: String) =
+    override fun string(key: String, defaultValue: String): Pref<String> =
         RealPref(listeners, sharedPrefs, StringAdapter, key, defaultValue)
 
     override fun stringSet(key: String, defaultValue: Set<String>): StringSetPref =
@@ -48,7 +48,7 @@ internal class RealKPrefs(override val sharedPrefs: SharedPreferences) : KPrefs 
     /**
      * Returns a new [CustomPref]
      */
-    override fun <T> custom(key: String, defaultValue: T, adapter: Pref.Adapter<T>) =
+    override fun <T> custom(key: String, defaultValue: T, adapter: Pref.Adapter<T>): CustomPref<T> =
         RealPref(listeners, sharedPrefs, adapter, key, defaultValue)
 
     @SuppressLint("ApplySharedPref")

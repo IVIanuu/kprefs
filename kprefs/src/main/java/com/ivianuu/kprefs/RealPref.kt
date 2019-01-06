@@ -30,7 +30,7 @@ internal class RealPref<T>(
     override val defaultValue: T
 ) : Pref<T> {
 
-    override val isSet get() = sharedPrefs.contains(key)
+    override val isSet: Boolean get() = sharedPrefs.contains(key)
 
     private val changeListener: (String) -> Unit = { key ->
         if (this.key == key) {
@@ -42,7 +42,7 @@ internal class RealPref<T>(
     private val changeListeners = mutableListOf<ChangeListener<T>>()
     private var listeningForChanges = false
 
-    override fun get() = if (isSet) {
+    override fun get(): T = if (isSet) {
         adapter.get(key, sharedPrefs)
     } else {
         defaultValue
@@ -72,7 +72,7 @@ internal class RealPref<T>(
         }
     }
 
-    override fun addListener(listener: ChangeListener<T>): ChangeListener<T> {
+    override fun addListener(listener: ChangeListener<T>) {
         if (changeListeners.contains(listener)) return listener
 
         changeListeners.add(listener)
@@ -84,8 +84,6 @@ internal class RealPref<T>(
             listeners.addListener(changeListener)
             listeningForChanges = true
         }
-
-        return listener
     }
 
     override fun removeListener(listener: ChangeListener<T>) {

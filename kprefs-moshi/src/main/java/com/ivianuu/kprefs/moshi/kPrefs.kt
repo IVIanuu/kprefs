@@ -17,6 +17,7 @@
 package com.ivianuu.kprefs.moshi
 
 import android.content.SharedPreferences
+import com.ivianuu.kprefs.CustomPref
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.KPrefsPlugins
 import com.ivianuu.kprefs.Pref
@@ -31,7 +32,7 @@ inline fun <reified T : Any> KPrefs.customMoshi(
     key: String,
     defaultValue: T,
     moshi: Moshi = KPrefsPlugins.defaultMoshi
-) = customMoshi(key, defaultValue, T::class, moshi)
+): CustomPref<T> = customMoshi(key, defaultValue, T::class, moshi)
 
 /**
  * Returns a [CustomPref] of type [T] which will be deserialized/serialized by [moshi]
@@ -41,7 +42,7 @@ fun <T : Any> KPrefs.customMoshi(
     defaultValue: T,
     clazz: KClass<T>,
     moshi: Moshi = KPrefsPlugins.defaultMoshi
-) = custom(key, defaultValue, MoshiAdapter(moshi.adapter(clazz.java)))
+): CustomPref<T> = custom(key, defaultValue, MoshiAdapter(moshi.adapter(clazz.java)))
 
 private class MoshiAdapter<T>(private val jsonAdapter: JsonAdapter<T>) : Pref.Adapter<T> {
 
