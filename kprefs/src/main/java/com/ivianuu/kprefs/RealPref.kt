@@ -73,7 +73,7 @@ internal class RealPref<T>(
     }
 
     override fun addListener(listener: ChangeListener<T>) {
-        if (changeListeners.contains(listener)) return listener
+        if (changeListeners.contains(listener)) return
 
         changeListeners.add(listener)
 
