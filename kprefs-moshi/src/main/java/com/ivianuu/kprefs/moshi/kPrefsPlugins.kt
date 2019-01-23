@@ -22,7 +22,7 @@ import com.squareup.moshi.Moshi
 private var _defaultMoshi = Moshi.Builder().build()
 
 /**
- * The default moshi instance which will be in [Preference.customMoshi]
+ * The default moshi instance which will be in [Pref.customMoshi]
  */
 var KPrefsPlugins.defaultMoshi: Moshi
     get() = _defaultMoshi

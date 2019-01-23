@@ -21,7 +21,7 @@ import kotlin.reflect.KClass
 
 internal object BooleanAdapter : Pref.Adapter<Boolean> {
     override fun get(key: String, preferences: SharedPreferences): Boolean =
-        preferences.getBoolean(key, RealKPrefs.DEFAULT_BOOLEAN)
+        preferences.getBoolean(key, DEFAULT_BOOLEAN)
     override fun set(key: String, value: Boolean, editor: SharedPreferences.Editor) {
         editor.putBoolean(key, value)
     }
@@ -29,7 +29,7 @@ internal object BooleanAdapter : Pref.Adapter<Boolean> {
 
 internal class EnumAdapter<T : Enum<T>>(private val enumClass: KClass<T>) : Pref.Adapter<T> {
     override fun get(key: String, preferences: SharedPreferences): T =
-        java.lang.Enum.valueOf(enumClass.java, preferences.getString(key, RealKPrefs.DEFAULT_STRING)!!)
+        java.lang.Enum.valueOf(enumClass.java, preferences.getString(key, DEFAULT_STRING)!!)
 
     override fun set(key: String, value: T, editor: SharedPreferences.Editor) {
         editor.putString(key, value.name)
@@ -38,7 +38,7 @@ internal class EnumAdapter<T : Enum<T>>(private val enumClass: KClass<T>) : Pref
 
 internal object FloatAdapter : Pref.Adapter<Float> {
     override fun get(key: String, preferences: SharedPreferences): Float =
-        preferences.getFloat(key, RealKPrefs.DEFAULT_FLOAT)
+        preferences.getFloat(key, DEFAULT_FLOAT)
     override fun set(key: String, value: Float, editor: SharedPreferences.Editor) {
         editor.putFloat(key, value)
     }
@@ -46,7 +46,7 @@ internal object FloatAdapter : Pref.Adapter<Float> {
 
 internal object IntAdapter : Pref.Adapter<Int> {
     override fun get(key: String, preferences: SharedPreferences): Int =
-        preferences.getInt(key, RealKPrefs.DEFAULT_INT)
+        preferences.getInt(key, DEFAULT_INT)
     override fun set(key: String, value: Int, editor: SharedPreferences.Editor) {
         editor.putInt(key, value)
     }
@@ -54,7 +54,7 @@ internal object IntAdapter : Pref.Adapter<Int> {
 
 internal object LongAdapter : Pref.Adapter<Long> {
     override fun get(key: String, preferences: SharedPreferences): Long =
-        preferences.getLong(key, RealKPrefs.DEFAULT_LONG)
+        preferences.getLong(key, DEFAULT_LONG)
     override fun set(key: String, value: Long, editor: SharedPreferences.Editor) {
         editor.putLong(key, value)
     }
@@ -62,7 +62,7 @@ internal object LongAdapter : Pref.Adapter<Long> {
 
 internal object StringAdapter : Pref.Adapter<String> {
     override fun get(key: String, preferences: SharedPreferences): String =
-        preferences.getString(key, RealKPrefs.DEFAULT_STRING)!!
+        preferences.getString(key, DEFAULT_STRING)!!
     override fun set(key: String, value: String, editor: SharedPreferences.Editor) {
         editor.putString(key, value)
     }
@@ -70,7 +70,7 @@ internal object StringAdapter : Pref.Adapter<String> {
 
 internal object StringSetAdapter : Pref.Adapter<Set<String>> {
     override fun get(key: String, preferences: SharedPreferences): Set<String> =
-        preferences.getStringSet(key, RealKPrefs.DEFAULT_STRING_SET)!!
+        preferences.getStringSet(key, DEFAULT_STRING_SET)!!
     override fun set(key: String, value: Set<String>, editor: SharedPreferences.Editor) {
         editor.putStringSet(key, value)
     }
