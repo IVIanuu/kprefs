@@ -12,7 +12,7 @@ object Build {
 }
 
 object Versions {
-    const val androidGradlePlugin = "3.2.1"
+    const val androidGradlePlugin = "3.3.0"
     const val androidx = "1.0.0"
     const val androidxLifecycle = "2.0.0"
     const val coroutines = "1.0.0"
@@ -20,9 +20,9 @@ object Versions {
     const val kotlin = "1.3.11"
     const val mockitoKotlin = "2.0.0"
     const val mavenGradle = "2.1"
-    const val moshi = "1.6.0"
+    const val moshi = "1.8.0"
     const val roboelectric = "4.0.2"
-    const val rxJava = "2.2.2"
+    const val rxJava = "2.2.6"
 }
 
 object Deps {

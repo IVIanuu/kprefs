@@ -33,7 +33,7 @@ interface KPrefs {
     /**
      * Returns a new [BooleanPref]
      */
-    fun boolean(key: String, defaultValue: Boolean = RealKPrefs.DEFAULT_BOOLEAN): BooleanPref
+    fun boolean(key: String, defaultValue: Boolean = DEFAULT_BOOLEAN): BooleanPref
 
     /**
      * Returns a new [EnumPref]
@@ -43,27 +43,27 @@ interface KPrefs {
     /**
      * Returns a new [FloatPref]
      */
-    fun float(key: String, defaultValue: Float = RealKPrefs.DEFAULT_FLOAT): FloatPref
+    fun float(key: String, defaultValue: Float = DEFAULT_FLOAT): FloatPref
 
     /**
      * Returns a new [IntPref]
      */
-    fun int(key: String, defaultValue: Int = RealKPrefs.DEFAULT_INT): IntPref
+    fun int(key: String, defaultValue: Int = DEFAULT_INT): IntPref
 
     /**
      * Returns a new [LongPref]
      */
-    fun long(key: String, defaultValue: Long = RealKPrefs.DEFAULT_LONG): LongPref
+    fun long(key: String, defaultValue: Long = DEFAULT_LONG): LongPref
 
     /**
      * Returns a new [StringPref]
      */
-    fun string(key: String, defaultValue: String = RealKPrefs.DEFAULT_STRING): StringPref
+    fun string(key: String, defaultValue: String = DEFAULT_STRING): StringPref
 
     /**
      * Returns a new [StringSetPref]
      */
-    fun stringSet(key: String, defaultValue: Set<String> = RealKPrefs.DEFAULT_STRING_SET): StringSetPref
+    fun stringSet(key: String, defaultValue: Set<String> = DEFAULT_STRING_SET): StringSetPref
 
     /**
      * Returns a new [CustomPref]

@@ -18,7 +18,7 @@ package com.ivianuu.kprefs.livedata
 
 import androidx.lifecycle.Lifecycle
 
-fun Lifecycle.Event.checkValid() {
+internal fun Lifecycle.Event.checkValid() {
     if (this == Lifecycle.Event.ON_ANY) {
         throw IllegalArgumentException("ON_ANY is not allowed")
     }

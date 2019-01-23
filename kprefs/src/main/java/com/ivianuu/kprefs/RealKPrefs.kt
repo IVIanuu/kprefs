@@ -45,9 +45,6 @@ internal class RealKPrefs(override val sharedPrefs: SharedPreferences) : KPrefs 
     override fun stringSet(key: String, defaultValue: Set<String>): StringSetPref =
         RealPref(listeners, sharedPrefs, StringSetAdapter, key, defaultValue)
 
-    /**
-     * Returns a new [CustomPref]
-     */
     override fun <T> custom(key: String, defaultValue: T, adapter: Pref.Adapter<T>): CustomPref<T> =
         RealPref(listeners, sharedPrefs, adapter, key, defaultValue)
 
@@ -60,14 +57,5 @@ internal class RealKPrefs(override val sharedPrefs: SharedPreferences) : KPrefs 
                 apply()
             }
         }
-    }
-
-    companion object {
-        internal const val DEFAULT_BOOLEAN = false
-        internal const val DEFAULT_FLOAT = 0f
-        internal const val DEFAULT_INT = 0
-        internal const val DEFAULT_LONG = 0L
-        internal const val DEFAULT_STRING = ""
-        internal val DEFAULT_STRING_SET = emptySet<String>()
     }
 }
