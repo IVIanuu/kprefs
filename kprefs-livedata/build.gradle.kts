@@ -1,6 +1,3 @@
-import org.gradle.jvm.tasks.Jar
-import java.io.File
-
 /*
  * Copyright 2018 Manuel Wrage
  *
@@ -26,6 +23,6 @@ apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/an
 apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/jitpack-publish.gradle")
 
 dependencies {
-    api(Deps.archLifecycleLiveData)
+    api(Deps.androidxLifecycleLiveData)
     api(project(":kprefs"))
 }
