@@ -13,7 +13,7 @@ object Build {
 
 object Versions {
     const val androidGradlePlugin = "3.3.0"
-    const val androidxAppCompat = "1.0.0"
+    const val androidxAppCompat = "1.0.2"
     const val androidxLifecycle = "2.0.0"
     const val coroutines = "1.0.0"
     const val junit = "4.12"
@@ -30,7 +30,7 @@ object Deps {
 
     const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompat}"
 
-    const val archLifecycleLiveData =
+    const val androidxLifecycleLiveData =
         "androidx.lifecycle:lifecycle-livedata:${Versions.androidxLifecycle}"
 
     const val coroutinesCore =
