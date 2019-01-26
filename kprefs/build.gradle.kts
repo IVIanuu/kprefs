@@ -1,5 +1,3 @@
-import org.gradle.jvm.tasks.Jar
-
 /*
  * Copyright 2018 Manuel Wrage
  *
@@ -22,7 +20,7 @@ plugins {
 }
 
 apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/android-build-lib.gradle")
-apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/jitpack-publish.gradle")
+apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mvn-publish.gradle")
 
 dependencies {
     api(Deps.kotlinStdLib)
