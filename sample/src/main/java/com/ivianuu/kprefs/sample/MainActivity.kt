@@ -18,6 +18,7 @@ package com.ivianuu.kprefs.sample
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.ivianuu.kprefs.KPrefs
@@ -25,7 +26,6 @@ import com.ivianuu.kprefs.coroutines.receiveChannel
 import com.ivianuu.kprefs.livedata.liveData
 import com.ivianuu.kprefs.rx.observable
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.channels.consumeEach
@@ -62,7 +62,11 @@ class MainActivity : AppCompatActivity() {
             Log.d("LiveData", "on changed -> $it")
         })
 
-        checkbox.setOnCheckedChangeListener { _, isChecked -> myPref.set(isChecked) }
+        findViewById<CheckBox>(R.id.checkbox).setOnCheckedChangeListener { _, isChecked ->
+            myPref.set(
+                isChecked
+            )
+        }
     }
 
     override fun onDestroy() {

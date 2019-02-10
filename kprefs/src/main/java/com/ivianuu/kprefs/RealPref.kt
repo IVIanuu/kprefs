@@ -43,7 +43,11 @@ internal class RealPref<T>(
     private var listeningForChanges = false
 
     override fun get(): T = if (isSet) {
-        adapter.get(key, sharedPrefs)
+        try {
+            adapter.get(key, sharedPrefs)
+        } catch (e: Exception) {
+            throw RuntimeException("couldn't read value for key: $key", e)
+        }
     } else {
         defaultValue
     }
@@ -51,11 +55,15 @@ internal class RealPref<T>(
     @SuppressLint("ApplySharedPref")
     override fun set(value: T) {
         sharedPrefs.edit().apply {
-            adapter.set(key, value, this)
-            if (KPrefsPlugins.useCommit) {
-                commit()
-            } else {
-                apply()
+            try {
+                adapter.set(key, value, this)
+                if (KPrefsPlugins.useCommit) {
+                    commit()
+                } else {
+                    apply()
+                }
+            } catch (e: Exception) {
+                throw RuntimeException("couldn't write value for key: $key", e)
             }
         }
     }
