@@ -23,8 +23,7 @@ import com.ivianuu.kprefs.Pref
 /**
  * Returns a [LiveData] which contains the latest value of [this]
  */
-val <T> Pref<T>.liveData: LiveData<T>
-    get() = PreferenceLiveData(this)
+fun <T> Pref<T>.liveData(): LiveData<T
 
 private class PreferenceLiveData<T>(private val pref: Pref<T>) : LiveData<T>() {
 

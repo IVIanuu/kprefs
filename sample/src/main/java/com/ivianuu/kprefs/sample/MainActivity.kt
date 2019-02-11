@@ -49,16 +49,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         GlobalScope.launch(job) {
-            myPref.receiveChannel.consumeEach {
+            myPref.receiveChannel().consumeEach {
                 Log.d("Coroutines", "on changed -> $it")
             }
         }
 
-        myPref.observable
+        myPref.observable()
             .subscribe { Log.d("RxJava", "on changed -> $it") }
             .apply { disposables.add(this) }
 
-        myPref.liveData.observe(this, Observer {
+        myPref.liveData().observe(this, Observer {
             Log.d("LiveData", "on changed -> $it")
         })
 

@@ -24,12 +24,11 @@ import kotlinx.coroutines.channels.ReceiveChannel
 /**
  * Returns a [ReceiveChannel] which emits on changes
  */
-val <T> Pref<T>.receiveChannel: ReceiveChannel<T>
-    get() {
+fun <T> Pref<T>.receiveChannel(): ReceiveChannel<T> {
 // todo improve this there must be a better way than using a conflated broadcast channel
-        val channel = ConflatedBroadcastChannel<T>()
-        val listener: ChangeListener<T> = { channel.offer(it) }
-        channel.invokeOnClose { removeListener(listener) }
-        addListener(listener)
-        return channel.openSubscription()
-    }
+    val channel = ConflatedBroadcastChannel<T>()
+    val listener: ChangeListener<T> = { channel.offer(it) }
+    channel.invokeOnClose { removeListener(listener) }
+    addListener(listener)
+    return channel.openSubscription()
+}
