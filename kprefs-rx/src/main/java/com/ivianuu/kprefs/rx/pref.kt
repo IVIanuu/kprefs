@@ -25,7 +25,8 @@ import io.reactivex.ObservableOnSubscribe
 /**
  * Returns a [Observable] which emits on changes of [this]
  */
-fun <T> Pref<T>.observable(): Observable<T
+fun <T> Pref<T>.observable(): Observable<T> =
+    Observable.create(PreferenceObservableOnSubscribe(this))
 
 private class PreferenceObservableOnSubscribe<T>(private val pref: Pref<T>) :
     ObservableOnSubscribe<T> {
