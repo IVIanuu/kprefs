@@ -17,6 +17,8 @@
 package com.ivianuu.kprefs
 
 import android.content.SharedPreferences
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
 
@@ -29,8 +31,10 @@ internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
 
     private var listenerRegistered = false
 
-    fun addListener(listener: (String) -> Unit) {
-        if (listeners.contains(listener)) return
+    private val lock = ReentrantLock()
+
+    fun addListener(listener: (String) -> Unit): Unit = lock.withLock {
+        if (listeners.contains(listener)) return@withLock
 
         listeners.add(listener)
 
@@ -40,7 +44,7 @@ internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
         }
     }
 
-    fun removeListener(listener: (String) -> Unit) {
+    fun removeListener(listener: (String) -> Unit): Unit = lock.withLock {
         listeners.remove(listener)
         if (listeners.isEmpty() && listenerRegistered) {
             sharedPrefs.unregisterOnSharedPreferenceChangeListener(sharedPrefsChangeListener)

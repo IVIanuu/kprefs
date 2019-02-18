@@ -18,6 +18,9 @@ package com.ivianuu.kprefs
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
+import com.ivianuu.closeable.Closeable
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 /**
  * Actual implementation of a [Pref]
@@ -41,6 +44,7 @@ internal class RealPref<T>(
 
     private val changeListeners = mutableListOf<ChangeListener<T>>()
     private var listeningForChanges = false
+    private val listeningLock = ReentrantLock()
 
     override fun get(): T = if (isSet) {
         try {
@@ -80,26 +84,31 @@ internal class RealPref<T>(
         }
     }
 
-    override fun addListener(listener: ChangeListener<T>) {
-        if (changeListeners.contains(listener)) return
+    override fun addListener(listener: ChangeListener<T>): Closeable = listeningLock.withLock {
+        // create the closeable
+        val closeable = Closeable {
+            listeningLock.withLock {
+                changeListeners.remove(listener)
+                // stop internal listener if not needed anymore
+                if (changeListeners.isEmpty() && listeningForChanges) {
+                    listeners.removeListener(changeListener)
+                    listeningForChanges = false
+                }
+            }
+        }
 
         changeListeners.add(listener)
 
         // dispatch the current value
         listener(get())
 
+        // start internal listener if not done yet
         if (!listeningForChanges) {
             listeners.addListener(changeListener)
             listeningForChanges = true
         }
-    }
 
-    override fun removeListener(listener: ChangeListener<T>) {
-        changeListeners.remove(listener)
-        if (changeListeners.isEmpty() && listeningForChanges) {
-            listeners.removeListener(changeListener)
-            listeningForChanges = false
-        }
+        return@withLock closeable
     }
 
 }
