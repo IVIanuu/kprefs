@@ -18,7 +18,6 @@ package com.ivianuu.kprefs
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
-import com.ivianuu.closeable.Closeable
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
@@ -84,18 +83,8 @@ internal class RealPref<T>(
         }
     }
 
-    override fun addListener(listener: ChangeListener<T>): Closeable = listeningLock.withLock {
-        // create the closeable
-        val closeable = Closeable {
-            listeningLock.withLock {
-                changeListeners.remove(listener)
-                // stop internal listener if not needed anymore
-                if (changeListeners.isEmpty() && listeningForChanges) {
-                    listeners.removeListener(changeListener)
-                    listeningForChanges = false
-                }
-            }
-        }
+    override fun addListener(listener: ChangeListener<T>): Unit = listeningLock.withLock {
+        if (changeListeners.contains(listener)) return@withLock
 
         changeListeners.add(listener)
 
@@ -107,8 +96,16 @@ internal class RealPref<T>(
             listeners.addListener(changeListener)
             listeningForChanges = true
         }
-
-        return@withLock closeable
     }
 
+    override fun removeListener(listener: ChangeListener<T>) {
+        listeningLock.withLock {
+            changeListeners.remove(listener)
+            // stop internal listener if not needed anymore
+            if (changeListeners.isEmpty() && listeningForChanges) {
+                listeners.removeListener(changeListener)
+                listeningForChanges = false
+            }
+        }
+    }
 }
