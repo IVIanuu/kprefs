@@ -19,10 +19,16 @@ package com.ivianuu.kprefs
 /**
  * Global config
  */
-object KPrefsPlugins {
-    /**
-     * Whether or not [android.content.SharedPreferences.Editor.commit] should be used
-     * Instead of [android.content.SharedPreferences.Editor.apply]
-     */
-    var useCommit = false
-}
+object KPrefsPlugins
+
+private var _useCommit = false
+
+/**
+ * Whether or not [android.content.SharedPreferences.Editor.commit] should be used
+ * Instead of [android.content.SharedPreferences.Editor.apply]
+ */
+var KPrefsPlugins.useCommit: Boolean
+    get() = _useCommit
+    set(value) {
+        _useCommit = value
+    }
