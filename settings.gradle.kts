@@ -1,5 +1,6 @@
 include(
     "kprefs",
+    "kprefs-common",
     "kprefs-coroutines",
     "kprefs-livedata",
     "kprefs-moshi",

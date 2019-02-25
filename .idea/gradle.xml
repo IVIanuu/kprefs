@@ -11,6 +11,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/kprefs" />
+            <option value="$PROJECT_DIR$/kprefs-common" />
             <option value="$PROJECT_DIR$/kprefs-coroutines" />
             <option value="$PROJECT_DIR$/kprefs-livedata" />
             <option value="$PROJECT_DIR$/kprefs-moshi" />

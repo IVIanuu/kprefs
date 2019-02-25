@@ -15,18 +15,13 @@
  */
 
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("kotlin-android")
 }
 
-apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/android-build-app.gradle")
+apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/android-build-lib.gradle")
+apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mvn-publish.gradle")
 
 dependencies {
-    implementation(Deps.androidxAppCompat)
-    implementation(project(":kprefs"))
-    implementation(project(":kprefs-common"))
-    implementation(project(":kprefs-coroutines"))
-    implementation(project(":kprefs-livedata"))
-    implementation(project(":kprefs-moshi"))
-    implementation(project(":kprefs-rx"))
+    api(project(":kprefs"))
 }

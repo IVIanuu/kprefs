@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/KPrefs.iml" filepath="$PROJECT_DIR$/KPrefs.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs/kprefs.iml" filepath="$PROJECT_DIR$/kprefs/kprefs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kprefs-common/kprefs-common.iml" filepath="$PROJECT_DIR$/kprefs-common/kprefs-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-coroutines/kprefs-coroutines.iml" filepath="$PROJECT_DIR$/kprefs-coroutines/kprefs-coroutines.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-livedata/kprefs-livedata.iml" filepath="$PROJECT_DIR$/kprefs-livedata/kprefs-livedata.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-moshi/kprefs-moshi.iml" filepath="$PROJECT_DIR$/kprefs-moshi/kprefs-moshi.iml" />
