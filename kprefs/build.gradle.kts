@@ -24,6 +24,7 @@ apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mv
 
 dependencies {
     api(Deps.kotlinStdLib)
+    api(Deps.closeable)
     testImplementation(Deps.junit)
     testImplementation(Deps.mockitoKotlin)
     testImplementation(Deps.roboelectric)

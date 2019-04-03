@@ -22,6 +22,7 @@ object Versions {
     const val androidxAppCompat = "1.0.2"
     const val androidxLifecycle = "2.0.0"
     const val bintray = "1.8.4"
+    const val closeable = "0.0.1-dev-2"
     const val coroutines = "1.0.0"
     const val junit = "4.12"
     const val kotlin = "1.3.21"
@@ -42,6 +43,9 @@ object Deps {
 
     const val bintrayGradlePlugin =
         "com.jfrog.bintray.gradle:gradle-bintray-plugin:${Versions.bintray}"
+
+    const val closeable =
+        "com.ivianuu.closeable:closeable:${Versions.closeable}"
 
     const val coroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
