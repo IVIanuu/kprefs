@@ -3,7 +3,9 @@ package com.ivianuu.kprefs
 import android.content.SharedPreferences
 import com.ivianuu.kprefs.util.TestListener
 import com.nhaarman.mockitokotlin2.*
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class RealPrefTest {
@@ -149,21 +151,6 @@ class RealPrefTest {
 
         // other key
         addedChangeListeners.forEach { it("other_key") }
-        assertEquals(2, testListener.calls)
-    }
-
-    @Test
-    fun testAddSameListenerTwice() {
-        whenever(sharedPrefs.contains(PREF_KEY))
-            .doReturn(false)
-
-        val testListener = TestListener<String>()
-
-        pref.addListener(testListener)
-        pref.addListener(testListener)
-
-        addedChangeListeners.forEach { it(PREF_KEY) }
-
         assertEquals(2, testListener.calls)
     }
 
