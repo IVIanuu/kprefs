@@ -24,6 +24,8 @@ import androidx.lifecycle.Observer
 import com.ivianuu.closeable.Closeable
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.boolean
+import com.ivianuu.kprefs.common.getValue
+import com.ivianuu.kprefs.common.setValue
 import com.ivianuu.kprefs.coroutines.receiveChannel
 import com.ivianuu.kprefs.livedata.liveData
 import com.ivianuu.kprefs.rx.observable
@@ -41,6 +43,8 @@ class MainActivity : AppCompatActivity() {
     private val prefs by lazy { KPrefs(this) }
 
     private val myPref by lazy { prefs.boolean("my_pref") }
+
+    private var prefValue by myPref
 
     private val disposables = CompositeDisposable()
 
