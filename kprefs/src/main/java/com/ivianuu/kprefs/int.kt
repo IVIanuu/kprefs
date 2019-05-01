@@ -12,7 +12,7 @@ typealias IntPref = Pref<Int>
 
 private const val DEFAULT_INT = 0
 
-internal object IntAdapter : Pref.Adapter<Int> {
+private object IntAdapter : Pref.Adapter<Int> {
     override fun get(key: String, preferences: SharedPreferences): Int =
         preferences.getInt(key, DEFAULT_INT)
 

@@ -14,7 +14,7 @@ typealias DoublePref = Pref<Double>
 
 private const val DEFAULT_DOUBLE = 0.0
 
-internal object DoubleAdapter : Pref.Adapter<Double> {
+private object DoubleAdapter : Pref.Adapter<Double> {
     override fun get(key: String, preferences: SharedPreferences): Double =
         preferences.getString(key, "")!!.toDouble()
 

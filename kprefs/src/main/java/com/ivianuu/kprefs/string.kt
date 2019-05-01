@@ -12,7 +12,7 @@ typealias StringPref = Pref<String>
 
 private const val DEFAULT_STRING = ""
 
-internal object StringAdapter : Pref.Adapter<String> {
+private object StringAdapter : Pref.Adapter<String> {
     override fun get(key: String, preferences: SharedPreferences): String =
         preferences.getString(key, DEFAULT_STRING)!!
 

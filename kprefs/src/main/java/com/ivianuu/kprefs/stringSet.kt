@@ -12,7 +12,7 @@ typealias StringSetPref = Pref<Set<String>>
 
 private val DEFAULT_STRING_SET = emptySet<String>()
 
-internal object StringSetAdapter : Pref.Adapter<Set<String>> {
+private object StringSetAdapter : Pref.Adapter<Set<String>> {
     override fun get(key: String, preferences: SharedPreferences): Set<String> =
         preferences.getStringSet(key, DEFAULT_STRING_SET)!!
 

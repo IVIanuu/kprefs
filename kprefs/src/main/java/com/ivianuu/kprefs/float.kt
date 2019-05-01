@@ -12,7 +12,7 @@ typealias FloatPref = Pref<Float>
 
 private const val DEFAULT_FLOAT = 0f
 
-internal object FloatAdapter : Pref.Adapter<Float> {
+private object FloatAdapter : Pref.Adapter<Float> {
     override fun get(key: String, preferences: SharedPreferences): Float =
         preferences.getFloat(key, DEFAULT_FLOAT)
 

@@ -12,7 +12,7 @@ typealias LongPref = Pref<Long>
 
 private const val DEFAULT_LONG = 0L
 
-internal object LongAdapter : Pref.Adapter<Long> {
+private object LongAdapter : Pref.Adapter<Long> {
     override fun get(key: String, preferences: SharedPreferences): Long =
         preferences.getLong(key, DEFAULT_LONG)
 

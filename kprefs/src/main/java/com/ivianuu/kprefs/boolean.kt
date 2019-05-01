@@ -12,7 +12,7 @@ typealias BooleanPref = Pref<Boolean>
 
 private const val DEFAULT_BOOLEAN = false
 
-internal object BooleanAdapter : Pref.Adapter<Boolean> {
+private object BooleanAdapter : Pref.Adapter<Boolean> {
     override fun get(key: String, preferences: SharedPreferences): Boolean =
         preferences.getBoolean(key, DEFAULT_BOOLEAN)
 
