@@ -19,28 +19,20 @@ package com.ivianuu.kprefs.rx
 import com.ivianuu.kprefs.ChangeListener
 import com.ivianuu.kprefs.Pref
 import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
 
 /**
  * Returns a [Observable] which emits on changes of [this]
  */
-fun <T> Pref<T>.observable(): Observable<T> =
-    Observable.create(PreferenceObservableOnSubscribe(this))
-
-private class PreferenceObservableOnSubscribe<T>(private val pref: Pref<T>) :
-    ObservableOnSubscribe<T> {
-    override fun subscribe(emitter: ObservableEmitter<T>) {
-        val listener: ChangeListener<T> = {
-            if (!emitter.isDisposed) {
-                emitter.onNext(it)
-            }
-        }
-
-        emitter.setCancellable { pref.removeListener(listener) }
-
+fun <T> Pref<T>.asObservable(): Observable<T> = Observable.create { emitter ->
+    val listener: ChangeListener<T> = {
         if (!emitter.isDisposed) {
-            pref.addListener(listener)
+            emitter.onNext(it)
         }
+    }
+
+    emitter.setCancellable { removeListener(listener) }
+
+    if (!emitter.isDisposed) {
+        addListener(listener)
     }
 }

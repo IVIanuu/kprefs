@@ -23,20 +23,16 @@ import com.ivianuu.kprefs.Pref
 /**
  * Returns a [LiveData] which contains the latest value of [this]
  */
-fun <T> Pref<T>.liveData(): LiveData<T> = PreferenceLiveData(this)
-
-private class PreferenceLiveData<T>(private val pref: Pref<T>) : LiveData<T>() {
-
+fun <T> Pref<T>.asLiveData(): LiveData<T> = object : LiveData<T>() {
     private val listener: ChangeListener<T> = { value = it }
 
     override fun onActive() {
         super.onActive()
-        pref.addListener(listener)
+        addListener(listener)
     }
 
     override fun onInactive() {
         super.onInactive()
-        pref.removeListener(listener)
+        removeListener(listener)
     }
-
 }

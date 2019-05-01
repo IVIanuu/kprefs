@@ -18,19 +18,18 @@ package com.ivianuu.kprefs.coroutines
 
 import com.ivianuu.kprefs.ChangeListener
 import com.ivianuu.kprefs.Pref
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.ConflatedBroadcastChannel
-import kotlinx.coroutines.channels.ReceiveChannel
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowViaChannel
 
 /**
- * Returns a [ReceiveChannel] which emits on changes
+ * Returns a [Flow] which emits the latest value
  */
-@ExperimentalCoroutinesApi
-fun <T> Pref<T>.receiveChannel(): ReceiveChannel<T> {
-// todo improve this there must be a better way than using a conflated broadcast channel
-    val channel = ConflatedBroadcastChannel<T>()
+@FlowPreview
+fun <T> Pref<T>.asFlow(): Flow<T> = flowViaChannel(CONFLATED) { channel ->
     val listener: ChangeListener<T> = { channel.offer(it) }
-    channel.invokeOnClose { removeListener(listener) }
     addListener(listener)
-    return channel.openSubscription()
+    //todo Remove when invokeOnClose is no longer experimental, or use replacement.
+    channel.invokeOnClose { removeListener(listener) }
 }

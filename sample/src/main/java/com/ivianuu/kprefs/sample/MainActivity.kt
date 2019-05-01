@@ -26,13 +26,13 @@ import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.boolean
 import com.ivianuu.kprefs.common.getValue
 import com.ivianuu.kprefs.common.setValue
-import com.ivianuu.kprefs.coroutines.receiveChannel
-import com.ivianuu.kprefs.livedata.liveData
-import com.ivianuu.kprefs.rx.observable
+import com.ivianuu.kprefs.coroutines.asFlow
+import com.ivianuu.kprefs.livedata.asLiveData
+import com.ivianuu.kprefs.rx.asObservable
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.channels.consumeEach
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 /**
@@ -61,16 +61,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         GlobalScope.launch(job) {
-            myPref.receiveChannel().consumeEach {
+            myPref.asFlow().collect {
                 Log.d("Coroutines", "on changed -> $it")
             }
         }
 
-        myPref.observable()
+        myPref.asObservable()
             .subscribe { Log.d("RxJava", "on changed -> $it") }
             .apply { disposables.add(this) }
 
-        myPref.liveData().observe(this, Observer {
+        myPref.asLiveData().observe(this, Observer {
             Log.d("LiveData", "on changed -> $it")
         })
 
