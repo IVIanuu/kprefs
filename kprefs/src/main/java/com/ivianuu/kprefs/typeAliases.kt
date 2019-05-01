@@ -16,13 +16,4 @@
 
 package com.ivianuu.kprefs
 
-typealias BooleanPref = Pref<Boolean>
-typealias CustomPref<T> = Pref<T>
-typealias EnumPref<T> = Pref<T>
-typealias FloatPref = Pref<Float>
-typealias IntPref = Pref<Int>
-typealias LongPref = Pref<Long>
-typealias StringPref = Pref<String>
-typealias StringSetPref = Pref<Set<String>>
 
-typealias ChangeListener<T> = (T) -> Unit

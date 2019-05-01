@@ -1,7 +1,6 @@
 package com.ivianuu.kprefs.common
 
 import android.content.SharedPreferences
-import com.ivianuu.kprefs.CustomPref
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.Pref
 import kotlin.reflect.KClass
@@ -32,23 +31,23 @@ private class EnumBooleanPrefAdapter<T>(
 }
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Boolean]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Boolean]
  */
 inline fun <reified T> KPrefs.enumBoolean(
     key: String,
     defaultValue: T
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Boolean> =
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Boolean> =
     enumBoolean(key, defaultValue, T::class)
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Boolean]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Boolean]
  */
 fun <T> KPrefs.enumBoolean(
     key: String,
     defaultValue: T,
     type: KClass<T>
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Boolean> =
-    custom(key, defaultValue, EnumBooleanPrefAdapter(type, defaultValue))
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Boolean> =
+    pref(key, defaultValue, EnumBooleanPrefAdapter(type, defaultValue))
 
 private class EnumIntPrefAdapter<T>(
     private val type: KClass<T>,
@@ -63,23 +62,23 @@ private class EnumIntPrefAdapter<T>(
 }
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Int]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Int]
  */
 inline fun <reified T> KPrefs.enumInt(
     key: String,
     defaultValue: T
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Int> =
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Int> =
     enumInt(key, defaultValue, T::class)
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Int]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Int]
  */
 fun <T> KPrefs.enumInt(
     key: String,
     defaultValue: T,
     type: KClass<T>
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Int> =
-    custom(key, defaultValue, EnumIntPrefAdapter(type, defaultValue))
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Int> =
+    pref(key, defaultValue, EnumIntPrefAdapter(type, defaultValue))
 
 private class EnumFloatPrefAdapter<T>(
     private val type: KClass<T>,
@@ -94,23 +93,23 @@ private class EnumFloatPrefAdapter<T>(
 }
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Float]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Float]
  */
 inline fun <reified T> KPrefs.enumFloat(
     key: String,
     defaultValue: T
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Float> =
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Float> =
     enumFloat(key, defaultValue, T::class)
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Float]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Float]
  */
 fun <T> KPrefs.enumFloat(
     key: String,
     defaultValue: T,
     type: KClass<T>
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Float> =
-    custom(key, defaultValue, EnumFloatPrefAdapter(type, defaultValue))
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Float> =
+    pref(key, defaultValue, EnumFloatPrefAdapter(type, defaultValue))
 
 private class EnumLongPrefAdapter<T>(
     private val type: KClass<T>,
@@ -125,23 +124,23 @@ private class EnumLongPrefAdapter<T>(
 }
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Long]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Long]
  */
 inline fun <reified T> KPrefs.enumLong(
     key: String,
     defaultValue: T
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Long> =
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Long> =
     enumLong(key, defaultValue, T::class)
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Long]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Long]
  */
 fun <T> KPrefs.enumLong(
     key: String,
     defaultValue: T,
     type: KClass<T>
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<Long> =
-    custom(key, defaultValue, EnumLongPrefAdapter(type, defaultValue))
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<Long> =
+    pref(key, defaultValue, EnumLongPrefAdapter(type, defaultValue))
 
 private class EnumStringPrefAdapter<T>(
     private val type: KClass<T>,
@@ -156,23 +155,23 @@ private class EnumStringPrefAdapter<T>(
 }
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [String]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [String]
  */
 inline fun <reified T> KPrefs.enumString(
     key: String,
     defaultValue: T
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<String> =
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<String> =
     enumString(key, defaultValue, T::class)
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [String]
+ * Returns a [Pref] which is represented a an [T] but persisted as an [String]
  */
 fun <T> KPrefs.enumString(
     key: String,
     defaultValue: T,
     type: KClass<T>
-): CustomPref<T> where T : Enum<T>, T : PrefValueHolder<String> =
-    custom(key, defaultValue, EnumStringPrefAdapter(type, defaultValue))
+): Pref<T> where T : Enum<T>, T : PrefValueHolder<String> =
+    pref(key, defaultValue, EnumStringPrefAdapter(type, defaultValue))
 
 private class EnumStringSetPrefAdapter<T>(
     private val type: KClass<T>
@@ -188,20 +187,20 @@ private class EnumStringSetPrefAdapter<T>(
 }
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Set] of [String]s
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Set] of [String]s
  */
 inline fun <reified T> KPrefs.enumStringSet(
     key: String,
     defaultValue: Set<T>
-): CustomPref<Set<T>> where T : Enum<T>, T : PrefValueHolder<String> =
+): Pref<Set<T>> where T : Enum<T>, T : PrefValueHolder<String> =
     enumStringSet(key, defaultValue, T::class)
 
 /**
- * Returns a [CustomPref] which is represented a an [T] but persisted as an [Set] of [String]s
+ * Returns a [Pref] which is represented a an [T] but persisted as an [Set] of [String]s
  */
 fun <T> KPrefs.enumStringSet(
     key: String,
     defaultValue: Set<T>,
     type: KClass<T>
-): CustomPref<Set<T>> where T : Enum<T>, T : PrefValueHolder<String> =
-    custom(key, defaultValue, EnumStringSetPrefAdapter(type))
+): Pref<Set<T>> where T : Enum<T>, T : PrefValueHolder<String> =
+    pref(key, defaultValue, EnumStringSetPrefAdapter(type))

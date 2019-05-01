@@ -53,3 +53,5 @@ internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
     }
 
 }
+
+typealias ChangeListener<T> = (T) -> Unit

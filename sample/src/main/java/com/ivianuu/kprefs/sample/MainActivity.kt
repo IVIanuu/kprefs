@@ -23,6 +23,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.ivianuu.closeable.Closeable
 import com.ivianuu.kprefs.KPrefs
+import com.ivianuu.kprefs.boolean
 import com.ivianuu.kprefs.coroutines.receiveChannel
 import com.ivianuu.kprefs.livedata.liveData
 import com.ivianuu.kprefs.rx.observable
