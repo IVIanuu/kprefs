@@ -21,7 +21,6 @@ import android.util.Log
 import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.ivianuu.closeable.Closeable
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.boolean
 import com.ivianuu.kprefs.common.getValue
@@ -50,15 +49,9 @@ class MainActivity : AppCompatActivity() {
 
     private val job = Job()
 
-    private lateinit var closeable: Closeable
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        closeable = myPref.addListener {
-            Log.d("DefaultListener", "on changed -> $it")
-        }
 
         GlobalScope.launch(job) {
             myPref.asFlow().collect {
@@ -84,7 +77,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         job.cancel()
         disposables.clear()
-        closeable.close()
         super.onDestroy()
     }
 }

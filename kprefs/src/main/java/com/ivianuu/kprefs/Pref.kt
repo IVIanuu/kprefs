@@ -17,7 +17,6 @@
 package com.ivianuu.kprefs
 
 import android.content.SharedPreferences
-import com.ivianuu.closeable.Closeable
 
 /**
  * Pref
@@ -57,7 +56,7 @@ interface Pref<T> {
     /**
      * Adds the [listener] which will be notified on changes
      */
-    fun addListener(listener: ChangeListener<T>): Closeable
+    fun addListener(listener: ChangeListener<T>)
 
     /**
      * Removes the [listener]
