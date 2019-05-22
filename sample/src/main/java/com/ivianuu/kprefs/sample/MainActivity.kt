@@ -68,9 +68,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         findViewById<CheckBox>(R.id.checkbox).setOnCheckedChangeListener { _, isChecked ->
-            myPref.set(
-                isChecked
-            )
+            prefValue = isChecked
         }
     }
 
