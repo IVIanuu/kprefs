@@ -24,7 +24,6 @@ fun <T> KPrefs.enumInt(
 ): Pref<T> where T : Enum<T>, T : PrefValueHolder<Int> =
     pref(key, defaultValue, EnumIntPrefAdapter(type, defaultValue))
 
-
 private class EnumIntPrefAdapter<T>(
     private val type: KClass<T>,
     private val defaultValue: T

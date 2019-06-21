@@ -27,7 +27,7 @@ internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
     private val sharedPrefsChangeListener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             listeners.toList().forEach { it(key) }
-    }
+        }
 
     private var listenerRegistered = false
 

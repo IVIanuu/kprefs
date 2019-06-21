@@ -24,7 +24,6 @@ fun <T> KPrefs.enumFloat(
 ): Pref<T> where T : Enum<T>, T : PrefValueHolder<Float> =
     pref(key, defaultValue, EnumFloatPrefAdapter(type, defaultValue))
 
-
 private class EnumFloatPrefAdapter<T>(
     private val type: KClass<T>,
     private val defaultValue: T
