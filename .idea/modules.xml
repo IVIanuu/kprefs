@@ -5,12 +5,21 @@
       <module fileurl="file://$PROJECT_DIR$/KPrefs.iml" filepath="$PROJECT_DIR$/KPrefs.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs/kprefs.iml" filepath="$PROJECT_DIR$/kprefs/kprefs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/kprefs-buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/kprefs-buildSrc.iml" group="kprefs/buildSrc" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-common/kprefs-common.iml" filepath="$PROJECT_DIR$/kprefs-common/kprefs-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-coroutines/kprefs-coroutines.iml" filepath="$PROJECT_DIR$/kprefs-coroutines/kprefs-coroutines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kprefs/kprefs-kprefs.iml" filepath="$PROJECT_DIR$/kprefs/kprefs-kprefs.iml" group="kprefs/kprefs" />
+      <module fileurl="file://$PROJECT_DIR$/kprefs-common/kprefs-kprefs-common.iml" filepath="$PROJECT_DIR$/kprefs-common/kprefs-kprefs-common.iml" group="kprefs/kprefs-common" />
+      <module fileurl="file://$PROJECT_DIR$/kprefs-coroutines/kprefs-kprefs-coroutines.iml" filepath="$PROJECT_DIR$/kprefs-coroutines/kprefs-kprefs-coroutines.iml" group="kprefs/kprefs-coroutines" />
+      <module fileurl="file://$PROJECT_DIR$/kprefs-livedata/kprefs-kprefs-livedata.iml" filepath="$PROJECT_DIR$/kprefs-livedata/kprefs-kprefs-livedata.iml" group="kprefs/kprefs-livedata" />
+      <module fileurl="file://$PROJECT_DIR$/kprefs-moshi/kprefs-kprefs-moshi.iml" filepath="$PROJECT_DIR$/kprefs-moshi/kprefs-kprefs-moshi.iml" group="kprefs/kprefs-moshi" />
+      <module fileurl="file://$PROJECT_DIR$/kprefs-rx/kprefs-kprefs-rx.iml" filepath="$PROJECT_DIR$/kprefs-rx/kprefs-kprefs-rx.iml" group="kprefs/kprefs-rx" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-livedata/kprefs-livedata.iml" filepath="$PROJECT_DIR$/kprefs-livedata/kprefs-livedata.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-moshi/kprefs-moshi.iml" filepath="$PROJECT_DIR$/kprefs-moshi/kprefs-moshi.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-rx/kprefs-rx.iml" filepath="$PROJECT_DIR$/kprefs-rx/kprefs-rx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/kprefs-sample.iml" filepath="$PROJECT_DIR$/sample/kprefs-sample.iml" group="kprefs/sample" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/studio-projects-kprefs.iml" filepath="$PROJECT_DIR$/studio-projects-kprefs.iml" group="kprefs" />
     </modules>
   </component>
 </project>
