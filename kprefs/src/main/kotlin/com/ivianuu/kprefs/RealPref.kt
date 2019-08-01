@@ -36,7 +36,9 @@ internal class RealPref<T>(
     private val changeListener: (String) -> Unit = { key ->
         if (this.key == key) {
             val value = get()
-            changeListeners.toList().forEach { it(value) }
+            synchronized(changeListeners) { changeListeners }
+                .toList()
+                .forEach { it(value) }
         }
     }
 
