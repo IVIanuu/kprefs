@@ -17,38 +17,33 @@
 package com.ivianuu.kprefs
 
 import android.content.SharedPreferences
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
+import java.util.concurrent.atomic.AtomicBoolean
 
 internal class ChangeListeners(private val sharedPrefs: SharedPreferences) {
 
     private val listeners = mutableListOf<(String) -> Unit>()
+    private val listenerRegistered = AtomicBoolean(false)
 
     private val sharedPrefsChangeListener =
         SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
             listeners.toList().forEach { it(key) }
         }
 
-    private var listenerRegistered = false
-
-    private val lock = ReentrantLock()
-
-    fun addListener(listener: (String) -> Unit): Unit = lock.withLock {
-        if (listeners.contains(listener)) return@withLock
-
-        listeners.add(listener)
-
-        if (!listenerRegistered) {
+    fun addListener(listener: (String) -> Unit) {
+        synchronized(listeners) { listeners += listener }
+        if (!listenerRegistered.getAndSet(true)) {
             sharedPrefs.registerOnSharedPreferenceChangeListener(sharedPrefsChangeListener)
-            listenerRegistered = true
         }
     }
 
-    fun removeListener(listener: (String) -> Unit): Unit = lock.withLock {
-        listeners.remove(listener)
-        if (listeners.isEmpty() && listenerRegistered) {
+    fun removeListener(listener: (String) -> Unit) {
+        val isEmpty = synchronized(listeners) {
+            listeners -= listener
+            listeners.isEmpty()
+        }
+
+        if (isEmpty && listenerRegistered.getAndSet(false)) {
             sharedPrefs.unregisterOnSharedPreferenceChangeListener(sharedPrefsChangeListener)
-            listenerRegistered = false
         }
     }
 

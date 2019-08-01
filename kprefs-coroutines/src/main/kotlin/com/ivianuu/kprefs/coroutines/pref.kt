@@ -19,17 +19,16 @@ package com.ivianuu.kprefs.coroutines
 import com.ivianuu.kprefs.ChangeListener
 import com.ivianuu.kprefs.Pref
 import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.channels.Channel.Factory.CONFLATED
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowViaChannel
+import kotlinx.coroutines.flow.callbackFlow
 
 /**
  * Returns a [Flow] which emits the latest value
  */
 @FlowPreview
-fun <T> Pref<T>.asFlow(): Flow<T> = flowViaChannel(CONFLATED) { channel ->
-    val listener: ChangeListener<T> = { channel.offer(it) }
+fun <T> Pref<T>.asFlow(): Flow<T> = callbackFlow {
+    val listener: ChangeListener<T> = { offer(it) }
     addListener(listener)
-    //todo Remove when invokeOnClose is no longer experimental, or use replacement.
-    channel.invokeOnClose { removeListener(listener) }
+    awaitClose { removeListener(listener) }
 }

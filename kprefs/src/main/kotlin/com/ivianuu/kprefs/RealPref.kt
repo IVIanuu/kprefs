@@ -18,8 +18,7 @@ package com.ivianuu.kprefs
 
 import android.annotation.SuppressLint
 import android.content.SharedPreferences
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Actual implementation of a [Pref]
@@ -42,8 +41,7 @@ internal class RealPref<T>(
     }
 
     private val changeListeners = mutableListOf<ChangeListener<T>>()
-    private var listeningForChanges = false
-    private val listeningLock = ReentrantLock()
+    private val listeningForChanges = AtomicBoolean(false)
 
     override fun get(): T = if (isSet) {
         try {
@@ -84,28 +82,26 @@ internal class RealPref<T>(
     }
 
     override fun addListener(listener: ChangeListener<T>) {
-        listeningLock.withLock {
-            changeListeners.add(listener)
+        synchronized(listeners) { changeListeners += listener }
 
-            // dispatch the current value
-            listener(get())
+        // dispatch the current value
+        listener(get())
 
-            // start internal listener if not done yet
-            if (!listeningForChanges) {
-                listeners.addListener(changeListener)
-                listeningForChanges = true
-            }
+        // start internal listener if not done yet
+        if (!listeningForChanges.getAndSet(true)) {
+            listeners.addListener(changeListener)
         }
     }
 
     override fun removeListener(listener: ChangeListener<T>) {
-        listeningLock.withLock {
-            changeListeners.remove(listener)
-            // stop internal listener if not needed anymore
-            if (changeListeners.isEmpty() && listeningForChanges) {
-                listeners.removeListener(changeListener)
-                listeningForChanges = false
-            }
+        val isEmpty = synchronized(changeListeners) {
+            changeListeners -= listener
+            changeListeners.isEmpty()
+        }
+
+        // stop internal listener if not needed anymore
+        if (isEmpty && listeningForChanges.getAndSet(false)) {
+            listeners.removeListener(changeListener)
         }
     }
 }

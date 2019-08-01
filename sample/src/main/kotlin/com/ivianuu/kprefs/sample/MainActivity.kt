@@ -23,8 +23,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.ivianuu.kprefs.KPrefs
 import com.ivianuu.kprefs.boolean
-import com.ivianuu.kprefs.common.getValue
-import com.ivianuu.kprefs.common.setValue
 import com.ivianuu.kprefs.coroutines.asFlow
 import com.ivianuu.kprefs.livedata.asLiveData
 import com.ivianuu.kprefs.rx.asObservable
@@ -42,8 +40,6 @@ class MainActivity : AppCompatActivity() {
     private val prefs by lazy { KPrefs(this) }
 
     private val myPref by lazy { prefs.boolean("my_pref") }
-
-    private var prefValue by myPref
 
     private val disposables = CompositeDisposable()
 
@@ -68,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         findViewById<CheckBox>(R.id.checkbox).setOnCheckedChangeListener { _, isChecked ->
-            prefValue = isChecked
+            myPref.set(isChecked)
         }
     }
 

@@ -18,7 +18,11 @@ package com.ivianuu.kprefs
 
 import android.content.SharedPreferences
 import com.ivianuu.kprefs.util.TestChangeListener
-import com.nhaarman.mockitokotlin2.*
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -75,18 +79,6 @@ class ChangeListenersTest {
         sharedPrefsChangeListeners.forEach { it.onSharedPreferenceChanged(sharedPrefs, "key3") }
         assertEquals(testChangeListener.history[2], "key3")
         assertEquals(3, testChangeListener.calls)
-    }
-
-    @Test
-    fun testAddSameListenerTwice() {
-        val testChangeListener = TestChangeListener()
-
-        changeListeners.addListener(testChangeListener)
-        changeListeners.addListener(testChangeListener)
-
-        sharedPrefsChangeListeners.forEach { it.onSharedPreferenceChanged(sharedPrefs, "key") }
-
-        assertEquals(1, testChangeListener.calls)
     }
 
     @Test
