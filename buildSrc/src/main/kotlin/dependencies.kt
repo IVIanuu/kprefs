@@ -30,22 +30,22 @@ object Build {
 object Publishing {
     const val groupId = "com.ivianuu.kprefs"
     const val vcsUrl = "https://github.com/IVIanuu/kprefs"
-    const val version = "${Build.versionName}-dev12"
+    const val version = "${Build.versionName}-dev14"
 }
 
 object Versions {
-    const val androidGradlePlugin = "3.4.0"
+    const val androidGradlePlugin = "3.5.0-rc01"
     const val androidxAppCompat = "1.1.0-alpha04"
     const val androidxLifecycle = "2.1.0-alpha04"
     const val bintray = "1.8.4"
     const val coroutines = "1.3.0-RC"
     const val junit = "4.12"
-    const val kotlin = "1.3.40"
+    const val kotlin = "1.3.41"
     const val mockitoKotlin = "2.0.0"
     const val mavenGradle = "2.1"
     const val moshi = "1.8.0"
     const val roboelectric = "4.0.2"
-    const val rxJava = "2.2.8"
+    const val rxJava = "2.2.10"
 }
 
 object Deps {
