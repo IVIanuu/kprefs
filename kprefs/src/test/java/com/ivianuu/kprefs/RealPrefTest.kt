@@ -18,10 +18,15 @@ package com.ivianuu.kprefs
 
 import android.content.SharedPreferences
 import com.ivianuu.kprefs.util.TestListener
-import com.nhaarman.mockitokotlin2.*
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
+import com.nhaarman.mockitokotlin2.any
+import com.nhaarman.mockitokotlin2.doAnswer
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.eq
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.times
+import com.nhaarman.mockitokotlin2.verify
+import com.nhaarman.mockitokotlin2.whenever
+import org.junit.Assert.*
 import org.junit.Test
 
 class RealPrefTest {
@@ -38,7 +43,7 @@ class RealPrefTest {
             Unit
         }
         on { removeListener(any()) } doAnswer {
-            addedChangeListeners.remove(it.getArgument(0))
+            addedChangeListeners -= it.getArgument(0)
             Unit
         }
     }
@@ -94,12 +99,12 @@ class RealPrefTest {
 
     @Test
     fun testDelete() {
-        whenever(sharedPrefsEditor.remove(PREF_KEY))
+        whenever(sharedPrefsEditor -= PREF_KEY)
             .thenReturn(sharedPrefsEditor)
 
         pref.delete()
 
-        verify(sharedPrefsEditor.remove(PREF_KEY)).apply()
+        verify(sharedPrefsEditor -= PREF_KEY)).apply(
     }
 
     @Test
@@ -118,12 +123,12 @@ class RealPrefTest {
 
     @Test
     fun testDeleteUseCommit() {
-        whenever(sharedPrefsEditor.remove(PREF_KEY))
+        whenever(sharedPrefsEditor -= PREF_KEY)
             .thenReturn(sharedPrefsEditor)
 
         pref.delete()
 
-        verify(sharedPrefsEditor.remove(PREF_KEY)).apply()
+        verify(sharedPrefsEditor -= PREF_KEY)).apply(
     }
 
     @Test

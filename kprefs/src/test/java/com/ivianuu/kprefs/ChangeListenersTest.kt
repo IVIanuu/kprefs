@@ -33,11 +33,15 @@ class ChangeListenersTest {
 
     val sharedPrefs = mock<SharedPreferences> {
         on { registerOnSharedPreferenceChangeListener(any()) } doAnswer {
-            sharedPrefsChangeListeners.add(it.getArgument(0))
+            sharedPrefsChangeListeners += it.getArgument<SharedPreferences.OnSharedPreferenceChangeListener>(
+                0
+            )
             Unit
         }
         on { unregisterOnSharedPreferenceChangeListener(any()) } doAnswer {
-            sharedPrefsChangeListeners.remove(it.getArgument(0))
+            sharedPrefsChangeListeners -= it.getArgument<SharedPreferences.OnSharedPreferenceChangeListener>(
+                0
+            )
             Unit
         }
     }

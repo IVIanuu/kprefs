@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
 
         myPref.asObservable()
             .subscribe { Log.d("RxJava", "on changed -> $it") }
-            .apply { disposables.add(this) }
+            .let { disposables.add(it) }
 
         myPref.asLiveData().observe(this, Observer {
             Log.d("LiveData", "on changed -> $it")

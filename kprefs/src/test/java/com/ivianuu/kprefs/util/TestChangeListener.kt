@@ -21,6 +21,6 @@ class TestChangeListener : (String) -> Unit {
     private val _history = mutableListOf<String>()
     val calls get() = _history.size
     override fun invoke(p1: String) {
-        _history.add(p1)
+        _history += p1
     }
 }
