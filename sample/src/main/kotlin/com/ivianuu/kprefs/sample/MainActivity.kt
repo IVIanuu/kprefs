@@ -30,6 +30,8 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 /**
@@ -51,9 +53,13 @@ class MainActivity : AppCompatActivity() {
 
         GlobalScope.launch(job) {
             myPref.asFlow().collect {
-                Log.d("Coroutines", "on changed -> $it")
+                Log.d("Coroutines 1", "on changed -> $it")
             }
         }
+
+        myPref.asFlow()
+            .onEach { Log.d("Coroutines 2", "on changed -> $it") }
+            .launchIn(GlobalScope)
 
         myPref.asObservable()
             .subscribe { Log.d("RxJava", "on changed -> $it") }

@@ -26,7 +26,7 @@ fun <T, V> KClass<T>.valueFor(
     value: V,
     defaultValue: T
 ): T where T : Enum<T>, T : PrefValueHolder<V> =
-    java.enumConstants.firstOrNull { it.value == value } ?: defaultValue
+    java.enumConstants!!.firstOrNull { it.value == value } ?: defaultValue
 
 fun <T, V> KClass<T>.valueForOrNull(value: V): T? where T : Enum<T>, T : PrefValueHolder<V> =
-    java.enumConstants.firstOrNull { it.value == value }
+    java.enumConstants!!.firstOrNull { it.value == value }

@@ -18,7 +18,6 @@ package com.ivianuu.kprefs.coroutines
 
 import com.ivianuu.kprefs.ChangeListener
 import com.ivianuu.kprefs.Pref
-import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -26,7 +25,6 @@ import kotlinx.coroutines.flow.callbackFlow
 /**
  * Returns a [Flow] which emits the latest value
  */
-@FlowPreview
 fun <T> Pref<T>.asFlow(): Flow<T> = callbackFlow {
     val listener: ChangeListener<T> = { offer(it) }
     addListener(listener)
