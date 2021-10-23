@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidStudioProjects.kprefs.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidStudioProjects.kprefs.iml" />
       <module fileurl="file://$PROJECT_DIR$/KPrefs.iml" filepath="$PROJECT_DIR$/KPrefs.iml" />
       <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs/kprefs.iml" filepath="$PROJECT_DIR$/kprefs/kprefs.iml" />
@@ -10,6 +11,14 @@
       <module fileurl="file://$PROJECT_DIR$/kprefs-livedata/kprefs-livedata.iml" filepath="$PROJECT_DIR$/kprefs-livedata/kprefs-livedata.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-moshi/kprefs-moshi.iml" filepath="$PROJECT_DIR$/kprefs-moshi/kprefs-moshi.iml" />
       <module fileurl="file://$PROJECT_DIR$/kprefs-rx/kprefs-rx.iml" filepath="$PROJECT_DIR$/kprefs-rx/kprefs-rx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kprefs.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/kprefs.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kprefs/kprefs.kprefs.iml" filepath="$PROJECT_DIR$/.idea/modules/kprefs/kprefs.kprefs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kprefs-common/kprefs.kprefs-common.iml" filepath="$PROJECT_DIR$/.idea/modules/kprefs-common/kprefs.kprefs-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kprefs-coroutines/kprefs.kprefs-coroutines.iml" filepath="$PROJECT_DIR$/.idea/modules/kprefs-coroutines/kprefs.kprefs-coroutines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kprefs-livedata/kprefs.kprefs-livedata.iml" filepath="$PROJECT_DIR$/.idea/modules/kprefs-livedata/kprefs.kprefs-livedata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kprefs-moshi/kprefs.kprefs-moshi.iml" filepath="$PROJECT_DIR$/.idea/modules/kprefs-moshi/kprefs.kprefs-moshi.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/kprefs-rx/kprefs.kprefs-rx.iml" filepath="$PROJECT_DIR$/.idea/modules/kprefs-rx/kprefs.kprefs-rx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/kprefs.sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/kprefs.sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
     </modules>
   </component>
